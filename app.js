@@ -12,7 +12,7 @@ const personaPopover = document.querySelector('#persona-popover');
 let personaPopoverTimer;
 let activePersonaLink = null;
 let touchPreviewPersona = null;
-let touchActivation = false;
+let lastTouchStartAt = 0;
 function showPersonaPopover(link) {
   const context = personaContext[link.dataset.persona];
   if (!context || !personaPopover) return;
@@ -30,6 +30,7 @@ function showPersonaPopover(link) {
 }
 function hidePersonaPopover() {
   personaPopoverTimer = setTimeout(() => {
+    if (touchPreviewPersona) return;
     if (personaPopover.matches(':hover') || activePersonaLink?.matches(':hover') || activePersonaLink === document.activeElement) return;
     closePersonaPopover();
   }, 180);
@@ -42,11 +43,12 @@ function closePersonaPopover() {
   activePersonaLink = null;
 }
 document.querySelectorAll('.demo-bar [data-persona]').forEach(link => {
-  link.addEventListener('pointerdown', event => { touchActivation = event.pointerType === 'touch'; });
-  link.addEventListener('touchstart', () => { touchActivation = true; }, {passive:true});
+  link.addEventListener('pointerdown', event => { if (event.pointerType === 'touch') lastTouchStartAt = Date.now(); });
+  link.addEventListener('touchstart', () => { lastTouchStartAt = Date.now(); }, {passive:true});
   link.addEventListener('click', event => {
-    if (!touchActivation) return;
-    touchActivation = false;
+    const isTouchClick = event.pointerType === 'touch' || event.sourceCapabilities?.firesTouchEvents || Date.now() - lastTouchStartAt < 1500;
+    lastTouchStartAt = 0;
+    if (!isTouchClick) return;
     const persona = link.dataset.persona;
     if (touchPreviewPersona === persona) {
       touchPreviewPersona = null;
