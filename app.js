@@ -11,6 +11,8 @@ const personaContext = {
 const personaPopover = document.querySelector('#persona-popover');
 let personaPopoverTimer;
 let activePersonaLink = null;
+let touchPreviewPersona = null;
+let touchActivation = false;
 function showPersonaPopover(link) {
   const context = personaContext[link.dataset.persona];
   if (!context || !personaPopover) return;
@@ -29,26 +31,49 @@ function showPersonaPopover(link) {
 function hidePersonaPopover() {
   personaPopoverTimer = setTimeout(() => {
     if (personaPopover.matches(':hover') || activePersonaLink?.matches(':hover') || activePersonaLink === document.activeElement) return;
-    personaPopover.classList.remove('is-visible');
-    personaPopover.setAttribute('aria-hidden', 'true');
-    document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', 'false'));
-    activePersonaLink = null;
+    closePersonaPopover();
   }, 180);
 }
+function closePersonaPopover() {
+  clearTimeout(personaPopoverTimer);
+  personaPopover.classList.remove('is-visible');
+  personaPopover.setAttribute('aria-hidden', 'true');
+  document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', 'false'));
+  activePersonaLink = null;
+}
 document.querySelectorAll('.demo-bar [data-persona]').forEach(link => {
-  link.addEventListener('mouseenter', () => { personaPopoverTimer = setTimeout(() => showPersonaPopover(link), 180); });
+  link.addEventListener('pointerdown', event => { touchActivation = event.pointerType === 'touch'; });
+  link.addEventListener('touchstart', () => { touchActivation = true; }, {passive:true});
+  link.addEventListener('click', event => {
+    if (!touchActivation) return;
+    touchActivation = false;
+    const persona = link.dataset.persona;
+    if (touchPreviewPersona === persona) {
+      touchPreviewPersona = null;
+      return;
+    }
+    event.preventDefault();
+    touchPreviewPersona = persona;
+    showPersonaPopover(link);
+  });
+  link.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(hover: hover)').matches) personaPopoverTimer = setTimeout(() => showPersonaPopover(link), 180);
+  });
   link.addEventListener('mouseleave', hidePersonaPopover);
   link.addEventListener('focus', () => showPersonaPopover(link));
   link.addEventListener('blur', hidePersonaPopover);
 });
 personaPopover?.addEventListener('mouseenter', () => clearTimeout(personaPopoverTimer));
 personaPopover?.addEventListener('mouseleave', hidePersonaPopover);
+document.addEventListener('click', event => {
+  if (!touchPreviewPersona || event.target.closest('.demo-bar [data-persona]') || personaPopover?.contains(event.target)) return;
+  touchPreviewPersona = null;
+  closePersonaPopover();
+});
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape' || !personaPopover?.classList.contains('is-visible')) return;
-  clearTimeout(personaPopoverTimer);
-  personaPopover.classList.remove('is-visible');
-  personaPopover.setAttribute('aria-hidden', 'true');
-  document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', 'false'));
+  touchPreviewPersona = null;
+  closePersonaPopover();
 });
 
 const people = {

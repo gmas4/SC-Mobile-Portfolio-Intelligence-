@@ -74,4 +74,5 @@ body { background:linear-gradient(135deg,#edf4fa,#dce5ee); } .phone { height:856
 .persona-popover ul { display:grid;gap:3px;margin:5px 0 0;padding-left:16px;color:#39465d; }
 .persona-advisory { padding:8px 9px;border-radius:8px;background:#f3f8fc; }
 .persona-advisory p { margin:4px 0 0;color:#39465d;font-style:italic; }
-@media (max-width:600px) { .persona-popover { display:none; } }
+@media (max-width:600px) { .persona-popover { max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px);overflow-y:auto;overscroll-behavior:contain; } }
+@media (hover:none), (pointer:coarse) { .persona-popover { max-height:calc(100vh - 96px);max-height:calc(100dvh - 96px);overflow-y:auto;overscroll-behavior:contain; } }
