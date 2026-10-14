@@ -78,9 +78,9 @@ body { background:linear-gradient(135deg,#edf4fa,#dce5ee); } .phone { height:856
 @media (hover:none), (pointer:coarse) { .persona-popover { max-height:calc(100vh - 96px);max-height:calc(100dvh - 96px);overflow-y:auto;overscroll-behavior:contain; } }
 
 /* Shared explanation control for the illustrative amount in the persona hero. */
-.gap-amount { display:flex;align-items:center;gap:6px; }
+.gap-amount { display:flex;align-items:center;gap:8px; }
 .gap-help { position:relative; }
-.gap-help summary { display:grid;place-items:center;width:17px;height:17px;border:1px solid currentColor;border-radius:50%;color:inherit;cursor:pointer;font:inherit;font-size:11px;font-weight:750;line-height:1;list-style:none; }
+.gap-help summary { display:grid;place-items:center;width:24px;height:24px;border:1px solid #fff;border-radius:50%;background:#fff;color:#005fc9;cursor:pointer;font:inherit;font-size:14px;font-weight:800;line-height:1;list-style:none; }
 .gap-help summary::-webkit-details-marker { display:none; }
 .gap-help summary:focus-visible { outline:2px solid currentColor;outline-offset:2px; }
 .gap-help-copy { position:absolute;z-index:6;top:calc(100% + 7px);left:0;width:min(250px,calc(100vw - 40px));padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);box-shadow:0 8px 22px #17233d22;font-size:10px;line-height:1.4;text-align:left; }
