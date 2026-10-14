@@ -57,3 +57,21 @@ body { background:linear-gradient(135deg,#edf4fa,#dce5ee); } .phone { height:856
 
 /* Continuous lock-screen wallpaper and a delayed iPhone-style push arrival. */
 .lock-screen { background:radial-gradient(ellipse at 76% 14%,#a9dcff 0%,#70aee1 14%,transparent 35%),radial-gradient(ellipse at 15% 82%,#1f4c63 0%,transparent 46%),linear-gradient(158deg,#0a223e 0%,#1c5071 39%,#5e8291 63%,#c7906d 79%,#3a3442 100%); } .lock-screen:after { display:none; } .push-arrived { animation:push-arrival .58s cubic-bezier(.16,.95,.25,1) both; } @keyframes push-arrival { from {opacity:0;transform:translateY(-28px) scale(.94)} 62% {opacity:1;transform:translateY(4px) scale(1.01)} to {opacity:1;transform:none} }
+
+/* Persona context popover, anchored to the fixed demo controls. */
+.persona-popover { position:fixed;z-index:10;top:0;left:0;width:min(340px,calc(100vw - 16px));padding:15px 16px;background:#fff;border:1px solid #dce4ed;border-top:3px solid var(--blue);border-radius:12px;box-shadow:0 12px 30px #15264a24;color:var(--ink);font:inherit;font-size:11px;line-height:1.35;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none; }
+.persona-popover.is-visible { opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto; }
+.persona-popover-name,.persona-popover-label { display:block; }
+.persona-popover-head { display:flex;align-items:center;gap:11px; }
+.persona-photo { display:block;flex:0 0 58px;width:58px;height:58px;border:1px solid #dce4ed;border-radius:50%;background-image:url("Untitled.jpg");background-repeat:no-repeat;background-size:1152px 648px; }
+.persona-photo-simon { background-position:-45px -128px; }
+.persona-photo-alex { background-position:-390px -128px; }
+.persona-photo-sarah { background-position:-739px -128px; }
+.persona-popover-name { font-size:15px;line-height:1.2; }
+.persona-popover-label { margin-top:2px;color:var(--muted);font-size:11px; }
+.persona-popover section { margin-top:11px; }
+.persona-popover section > b { color:var(--navy-2);font-size:9px;letter-spacing:.55px;text-transform:uppercase; }
+.persona-popover ul { display:grid;gap:3px;margin:5px 0 0;padding-left:16px;color:#39465d; }
+.persona-advisory { padding:8px 9px;border-radius:8px;background:#f3f8fc; }
+.persona-advisory p { margin:4px 0 0;color:#39465d;font-style:italic; }
+@media (max-width:600px) { .persona-popover { display:none; } }

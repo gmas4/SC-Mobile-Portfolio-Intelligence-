@@ -2,6 +2,55 @@ const app = document.querySelector('#app');
 const params = new URLSearchParams(location.search);
 const currentPersona = ['simon', 'alex', 'sarah'].includes(params.get('persona')) ? params.get('persona') : 'simon';
 
+const personaContext = {
+  simon: { name:'Simon', age:55, label:'Approaching Retirement', situation:['Holds CPF savings, investments and insurance','Seeks a comfortable, independent retirement','Wants to maintain lifestyle, travel and leave a legacy'], triggers:['Approaching retirement or CPF payout','Market volatility affecting assets','Rising healthcare and living costs','Concern about outliving savings'], moment:'Offer a quick retirement-readiness view and options to strengthen future income.' },
+  alex: { name:'Alex', age:35, label:'Established Income Earner', situation:['Stable income with a mortgage and family commitments','Wants to protect finances while building wealth','Seeks financial independence and lifestyle security'], triggers:['Changes in income, debt or dependants','Health events among family or peers','Coverage not reviewed recently'], moment:'Invite a quick check of whether current protection still matches evolving commitments.' },
+  sarah: { name:'Sarah', age:30, label:'Expecting New Dependant', situation:['Dual income with competing priorities','Wants to fund education without affecting retirement','Seeks long-term family security and opportunity'], triggers:['Arrival of a new child','Rising childcare and education costs','Home purchase or career change'], moment:'Help explore how new family priorities may shape protection and education planning.' }
+};
+
+const personaPopover = document.querySelector('#persona-popover');
+let personaPopoverTimer;
+let activePersonaLink = null;
+function showPersonaPopover(link) {
+  const context = personaContext[link.dataset.persona];
+  if (!context || !personaPopover) return;
+  clearTimeout(personaPopoverTimer);
+  activePersonaLink = link;
+  personaPopover.innerHTML = `<div class="persona-popover-head"><span class="persona-photo persona-photo-${link.dataset.persona}" role="img" aria-label="${context.name} portrait"></span><div><strong class="persona-popover-name">${context.name}, ${context.age}</strong><span class="persona-popover-label">${context.label}</span></div></div><section><b>Financial Situation &amp; Goal</b><ul>${context.situation.map(item => `<li>${item}</li>`).join('')}</ul></section><section><b>Potential Triggers</b><ul>${context.triggers.map(item => `<li>${item}</li>`).join('')}</ul></section><section class="persona-advisory"><b>Advisory Moment</b><p>${context.moment}</p></section>`;
+  const bounds = link.getBoundingClientRect();
+  personaPopover.classList.add('is-visible');
+  personaPopover.setAttribute('aria-hidden', 'false');
+  document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', item === link ? 'true' : 'false'));
+  const width = personaPopover.offsetWidth;
+  const left = Math.max(8, Math.min(bounds.left, window.innerWidth - width - 8));
+  personaPopover.style.left = `${left}px`;
+  personaPopover.style.top = `${bounds.bottom + 10}px`;
+}
+function hidePersonaPopover() {
+  personaPopoverTimer = setTimeout(() => {
+    if (personaPopover.matches(':hover') || activePersonaLink?.matches(':hover') || activePersonaLink === document.activeElement) return;
+    personaPopover.classList.remove('is-visible');
+    personaPopover.setAttribute('aria-hidden', 'true');
+    document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', 'false'));
+    activePersonaLink = null;
+  }, 180);
+}
+document.querySelectorAll('.demo-bar [data-persona]').forEach(link => {
+  link.addEventListener('mouseenter', () => { personaPopoverTimer = setTimeout(() => showPersonaPopover(link), 180); });
+  link.addEventListener('mouseleave', hidePersonaPopover);
+  link.addEventListener('focus', () => showPersonaPopover(link));
+  link.addEventListener('blur', hidePersonaPopover);
+});
+personaPopover?.addEventListener('mouseenter', () => clearTimeout(personaPopoverTimer));
+personaPopover?.addEventListener('mouseleave', hidePersonaPopover);
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !personaPopover?.classList.contains('is-visible')) return;
+  clearTimeout(personaPopoverTimer);
+  personaPopover.classList.remove('is-visible');
+  personaPopover.setAttribute('aria-hidden', 'true');
+  document.querySelectorAll('.demo-bar [data-persona]').forEach(item => item.setAttribute('aria-expanded', 'false'));
+});
+
 const people = {
   simon: {
     name: 'Simon', initials: 'S', title: 'Your retirement outlook', icon: '◔',

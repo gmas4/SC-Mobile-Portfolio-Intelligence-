@@ -11,11 +11,12 @@
     <aside class="demo-bar" aria-label="Prototype controls">
       <span class="demo-pill">Illustrative prototype · Synthetic data</span>
       <nav aria-label="Demo personas">
-        <a href="?persona=simon">Simon · Retirement</a>
-        <a href="?persona=alex">Alex · Protection</a>
-        <a href="?persona=sarah">Sarah · Family</a>
+        <a href="?persona=simon" data-persona="simon" aria-describedby="persona-popover" aria-expanded="false">Simon · Retirement</a>
+        <a href="?persona=alex" data-persona="alex" aria-describedby="persona-popover" aria-expanded="false">Alex · Protection</a>
+        <a href="?persona=sarah" data-persona="sarah" aria-describedby="persona-popover" aria-expanded="false">Sarah · Family</a>
       </nav>
     </aside>
+    <div id="persona-popover" class="persona-popover" role="tooltip" aria-hidden="true"></div>
     <main class="stage">
       <section class="phone" aria-label="SC Mobile prototype">
         <div id="app" class="app" aria-live="polite"></div>
