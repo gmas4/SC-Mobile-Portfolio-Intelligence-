@@ -164,4 +164,5 @@ body { background:linear-gradient(135deg,#edf4fa,#dce5ee); } .phone { height:856
   .demo-bar { flex:0 0 auto; }
   .stage { flex:1 1 auto;height:auto;min-height:0;overflow:hidden; }
   .phone { height:100%;min-height:0; }
+  .journey-top .reset { min-width:44px;min-height:44px;padding:8px 10px;touch-action:manipulation; }
 }

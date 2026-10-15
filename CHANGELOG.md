@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1] - 2026-10-15
+
+- Increased the mobile journey Reset control's tap target to 44px without changing its visual style.
+
 ## [1.1.0] - 2026-10-15
 
 - Made the SC Mobile home content scrollable within the phone while keeping the phone frame and bottom navigation fixed.
