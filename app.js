@@ -9,6 +9,53 @@ const personaContext = {
 };
 
 const personaPopover = document.querySelector('#persona-popover');
+const momentTrigger = document.querySelector('.moment-trigger');
+const momentCallout = document.querySelector('#moment-callout');
+let momentCloseTimer;
+let suppressMomentFocus = false;
+function closeMomentCallout(returnFocus = false) {
+  clearTimeout(momentCloseTimer);
+  if (!momentCallout?.classList.contains('is-visible')) return;
+  momentCallout.classList.remove('is-visible');
+  momentCallout.setAttribute('aria-hidden', 'true');
+  momentTrigger?.setAttribute('aria-expanded', 'false');
+  if (returnFocus) momentTrigger?.focus();
+}
+function toggleMomentCallout(forceOpen) {
+  if (!momentCallout || !momentTrigger) return;
+  clearTimeout(momentCloseTimer);
+  const open = forceOpen ?? !momentCallout.classList.contains('is-visible');
+  momentCallout.classList.toggle('is-visible', open);
+  momentCallout.setAttribute('aria-hidden', String(!open));
+  momentTrigger.setAttribute('aria-expanded', String(open));
+}
+momentTrigger?.addEventListener('click', () => toggleMomentCallout(true));
+momentTrigger?.addEventListener('mouseenter', () => {
+  if (window.matchMedia('(hover: hover)').matches) toggleMomentCallout(true);
+});
+momentTrigger?.addEventListener('mouseleave', () => {
+  momentCloseTimer = setTimeout(() => {
+    if (!momentCallout?.matches(':hover') && document.activeElement !== momentTrigger) closeMomentCallout();
+  }, 180);
+});
+momentTrigger?.addEventListener('focus', () => {
+  if (suppressMomentFocus) { suppressMomentFocus = false; return; }
+  toggleMomentCallout(true);
+});
+momentTrigger?.addEventListener('blur', () => {
+  momentCloseTimer = setTimeout(() => {
+    if (!momentCallout?.matches(':hover')) closeMomentCallout();
+  }, 180);
+});
+momentCallout?.addEventListener('mouseenter', () => toggleMomentCallout(true));
+momentCallout?.addEventListener('mouseleave', () => {
+  momentCloseTimer = setTimeout(() => {
+    if (document.activeElement !== momentTrigger) closeMomentCallout();
+  }, 180);
+});
+document.addEventListener('click', event => {
+  if (momentCallout?.classList.contains('is-visible') && !event.target.closest('.moment-explainer')) closeMomentCallout();
+});
 let personaPopoverTimer;
 let activePersonaLink = null;
 let touchPreviewPersona = null;
@@ -73,7 +120,13 @@ document.addEventListener('click', event => {
   closePersonaPopover();
 });
 document.addEventListener('keydown', event => {
-  if (event.key !== 'Escape' || !personaPopover?.classList.contains('is-visible')) return;
+  if (event.key !== 'Escape') return;
+  if (momentCallout?.classList.contains('is-visible')) {
+    suppressMomentFocus = true;
+    closeMomentCallout(true);
+    return;
+  }
+  if (!personaPopover?.classList.contains('is-visible')) return;
   touchPreviewPersona = null;
   closePersonaPopover();
 });
