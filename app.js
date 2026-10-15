@@ -121,6 +121,11 @@ document.addEventListener('click', event => {
 });
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
+  if (document.querySelector('.protection-dialog')) {
+    event.preventDefault();
+    closeProtectionDialog();
+    return;
+  }
   if (momentCallout?.classList.contains('is-visible')) {
     suppressMomentFocus = true;
     closeMomentCallout(true);
@@ -131,12 +136,12 @@ document.addEventListener('keydown', event => {
   closePersonaPopover();
 });
 document.addEventListener('click', event => {
-  const openHelp = document.querySelector('.gap-help[open]');
+  const openHelp = document.querySelector('.gap-help[open], .protection-info[open]');
   if (openHelp && !openHelp.contains(event.target)) openHelp.open = false;
 });
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
-  const openHelp = document.querySelector('.gap-help[open]');
+  const openHelp = document.querySelector('.gap-help[open], .protection-info[open]');
   if (!openHelp) return;
   openHelp.open = false;
   openHelp.querySelector('summary')?.focus();
@@ -159,7 +164,18 @@ const people = {
     formula: v => `S$${number(v.desired)} desired monthly income − S$${number(v.forecast)} forecast income × 12 months × ${v.years} years`,
     types: [['Retirement income planning','Explore how a future income target, existing assets and protection can work together.'], ['Health and long-term care review','Understand how care or medical costs may affect retirement plans.'], ['Legacy planning','Consider how a plan can support the people and causes important to you.']],
     products: [['PRUWealth Plus (SGD)','A flexible wealth-planning plan described by SC Singapore as supporting changing financial needs and family goals.','Retirement and family goals'], ['PRUActive Retirement II','An SC Singapore retirement solution to explore with an adviser.','Retirement planning']],
-    handoff: 'Request a retirement planning conversation'
+    handoff: 'Request a retirement planning conversation',
+    protectionSnapshot: {
+      supportingText: 'See the protection currently visible to SCB and areas that may be worth reviewing as retirement approaches.',
+      coverages: [
+        { key:'health', label:'Health', icon:'health', status:'covered', note:'Health protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'critical-illness', label:'Critical illness', icon:'critical', status:'worth-reviewing', note:'It may be useful to revisit how critical illness cover fits alongside your healthcare and retirement plans. This does not mean you lack cover.' },
+        { key:'life', label:'Life', icon:'life', status:'covered', note:'Life protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'long-term-care', label:'Long-term care', icon:'care', status:'not-visible', note:'Long-term care protection details are not currently visible to SCB in this illustrative profile. You may already have cover elsewhere.' },
+        { key:'travel', label:'Travel', icon:'travel', status:'covered', note:'Travel protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'legacy-planning', label:'Legacy planning', icon:'legacy', status:'worth-reviewing', note:'You may wish to review how your legacy intentions fit your wider retirement plans. This does not mean you lack cover.' }
+      ]
+    }
   },
   alex: {
     name: 'Alex', initials: 'A', title: 'Your family protection review', icon: '✚',
@@ -177,7 +193,18 @@ const people = {
     formula: v => `S$${number(v.costs)} monthly costs × 60 months + S$${number(v.mortgage)} debt + S$30,000 recovery reserve − S$${number(v.cover)} existing cover`,
     types: [['Income continuity','Explore protection designed to help a family manage loss of income from illness, disability or accident.'], ['Mortgage protection','Review how family housing commitments could be supported.'], ['Critical illness and health','Understand the different roles of medical and critical-illness cover.']],
     products: [['PRUActive Term','An SC Singapore protection option described as flexible coverage for changing lifestyles.','Protection discussion'], ['Allianz Cancer Protect','An SC Singapore critical-illness option to discuss in the context of Alex’s broader needs.','Critical illness discussion']],
-    handoff: 'Request a protection review'
+    handoff: 'Request a protection review',
+    protectionSnapshot: {
+      supportingText: 'See the protection currently visible to SCB and areas that may be worth reviewing as your commitments evolve.',
+      coverages: [
+        { key:'home', label:'Home', icon:'home', status:'covered', note:'Home protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'life', label:'Life', icon:'life', status:'not-visible', note:'Life protection details are not currently visible to SCB in this illustrative profile. You may already have cover elsewhere.' },
+        { key:'income-protection', label:'Income protection', icon:'income', status:'worth-reviewing', note:'It may be useful to review how your household could manage an interruption to income. This does not mean you lack cover.' },
+        { key:'critical-illness', label:'Critical illness', icon:'critical', status:'worth-reviewing', note:'It may be useful to review how critical illness cover fits your household commitments. This does not mean you lack cover.' },
+        { key:'travel', label:'Travel', icon:'travel', status:'covered', note:'Travel protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'cyber', label:'Cyber', icon:'cyber', status:'covered', note:'Cyber protection information is visible in this illustrative SCB view. Check that the details are current.' }
+      ]
+    }
   },
   sarah: {
     name: 'Sarah', initials: 'S', title: 'Your family goal outlook', icon: '♡',
@@ -195,19 +222,76 @@ const people = {
     formula: v => `S$${number(v.goal)} education goal − S$${number(v.funds)} current funds − S$${number(v.savings)} projected savings`,
     types: [['Education savings','Explore a goal, time horizon and the role of regular savings.'], ['Family protection','Consider how a parent’s ability to provide could affect the goal.'], ['Legacy and guardianship','Start a broader conversation about family security and intentions.']],
     products: [['PRUActive Saver III','An SC Singapore customisable insurance-savings plan presented for life milestones.','Family milestone planning'], ['PRUWealth Plus (SGD)','A wealth-planning option to explore for longer-term family goals.','Family goals discussion']],
-    handoff: 'Request a family-planning conversation'
+    handoff: 'Request a family-planning conversation',
+    protectionSnapshot: {
+      supportingText: 'See the protection currently visible to SCB and areas you may want to review as your family priorities evolve.',
+      coverages: [
+        { key:'travel', label:'Travel', icon:'travel', status:'covered', note:'Travel protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'home', label:'Home', icon:'home', status:'not-visible', note:'Home protection details are not currently visible to SCB in this illustrative profile. You may already have cover elsewhere.' },
+        { key:'cyber', label:'Cyber', icon:'cyber', status:'covered', note:'Cyber protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'life', label:'Life', icon:'life', status:'not-visible', note:'Life protection details are not currently visible to SCB in this illustrative profile. You may already have cover elsewhere.' },
+        { key:'health', label:'Health & critical illness', icon:'health', status:'covered', note:'Health protection information is visible in this illustrative SCB view. Check that the details are current.' },
+        { key:'family-protection', label:'Family protection', icon:'family', status:'worth-reviewing', note:'It may be useful to review how protection fits your family’s changing responsibilities. This does not mean you lack cover.' }
+      ]
+    }
   }
 };
 
 const person = people[currentPersona];
 const defaults = Object.fromEntries(person.fields.map(field => [field.key, field.value]));
 const initialView = currentPersona === 'alex' ? 'email' : currentPersona === 'sarah' ? 'banking' : 'lock';
-let state = { values: {...defaults}, view: initialView, tab: 'overview', response: null, booking: false, assistant: false, chat: [], notificationVisible: false, pushVisible: false, customValues: false };
+let state = { values: {...defaults}, view: initialView, tab: 'overview', response: null, booking: false, assistant: false, chat: [], notificationVisible: false, pushVisible: false, customValues: false, protectionReview: false, protectionCategory: null, protectionConfirmations: {}, protectionMessage: null };
+let lastRenderedView = null;
+let protectionFocusSelector = null;
 let notificationTimer = null;
 let pushTimer = null;
 const number = value => new Intl.NumberFormat('en-SG').format(Math.round(value));
 const gap = () => person.calculation(state.values);
 const route = view => { state.view = view; state.tab = 'overview'; render(); };
+function protectionStatus(coverage) {
+  if (state.protectionConfirmations[coverage.key]) return { key:'cover-indicated', label:'Cover indicated', mark:'i' };
+  const statuses = {
+    covered: { key:'covered', label:'Covered', mark:'✓' },
+    'not-visible': { key:'not-visible', label:'Not visible', mark:'+' },
+    'worth-reviewing': { key:'worth-reviewing', label:'Worth reviewing', mark:'i' }
+  };
+  return statuses[coverage.status];
+}
+function protectionSnapshot() {
+  const snapshot = person.protectionSnapshot;
+  const visibleAreas = snapshot.coverages.filter(coverage => coverage.status === 'covered').length;
+  return `<section class="protection-section" aria-labelledby="protection-heading"><div class="protection-section-heading"><div><span class="protection-eyebrow">Insurance &amp; protection</span><h2 id="protection-heading">Protect What Matters Most</h2></div><details class="protection-info"><summary aria-label="About this protection view" aria-controls="protection-info-copy">i</summary><div id="protection-info-copy" class="protection-info-pop" role="note"><strong>About this protection view</strong><p>This view reflects insurance and protection information currently visible to SCB in this illustrative scenario. It may not include policies held with other providers.</p><p>You can review or update your information before deciding whether to explore any options.</p></div></details></div><p class="protection-intro">${snapshot.supportingText}</p><p class="protection-visible-count">Protection currently visible in <strong>${visibleAreas} areas</strong></p>${state.protectionMessage ? `<p class="protection-message" role="status">${state.protectionMessage}</p>` : ''}<div class="protection-grid">${snapshot.coverages.map(coverage => { const status = protectionStatus(coverage); return `<button class="protection-category" type="button" data-action="protection-category" data-category="${coverage.key}" aria-label="${coverage.label}: ${status.label}">${scIcon(coverage.icon)}<span class="protection-category-label">${coverage.label}</span><span class="protection-status protection-status-${status.key}"><i aria-hidden="true">${status.mark}</i>${status.label}</span></button>`; }).join('')}</div><div class="protection-actions"><button class="protection-review" type="button" data-action="protection-review">Review your protection portfolio</button><button class="protection-explore" type="button" data-action="open">Explore insurance solutions</button></div></section>`;
+}
+function protectionDialog() {
+  if (!state.protectionReview && !state.protectionCategory) return '';
+  const snapshot = person.protectionSnapshot;
+  const coverage = snapshot.coverages.find(item => item.key === state.protectionCategory);
+  const title = state.protectionReview ? 'Review your protection portfolio' : coverage?.label || 'Protection details';
+  const detail = !coverage ? '' : state.protectionConfirmations[coverage.key]
+    ? 'You’ve indicated that you may already have cover for this area. This update is shown for this demonstration session only.'
+    : coverage.status === 'not-visible'
+      ? `We don’t currently see protection for ${coverage.label.toLowerCase()} in the information available to us. You may already have cover elsewhere.`
+      : coverage.note;
+  const reviewRows = snapshot.coverages.map(item => {
+    const status = protectionStatus(item);
+    return `<article class="protection-review-row">${scIcon(item.icon)}<div><div class="protection-review-title"><strong>${item.label}</strong><span class="protection-status protection-status-${status.key}"><i aria-hidden="true">${status.mark}</i>${status.label}</span></div><p>${item.note}</p></div></article>`;
+  }).join('');
+  return `<div class="protection-dialog" data-action="protection-backdrop"><section class="protection-dialog-card" role="dialog" aria-modal="true" aria-labelledby="protection-dialog-title"><button class="protection-dialog-close" type="button" data-action="protection-close" aria-label="Close protection details">×</button><span class="protection-eyebrow">Your current SCB view</span><h2 id="protection-dialog-title">${title}</h2>${state.protectionReview ? `<p class="protection-dialog-intro">${snapshot.supportingText}</p><div class="protection-review-list">${reviewRows}</div><button class="protection-explore-area" type="button" data-action="protection-explore-area">Explore these areas</button>` : `<p class="protection-dialog-copy">${detail}</p>${coverage?.status === 'worth-reviewing' ? `<p class="protection-dialog-note">Worth reviewing does not mean you lack protection.</p>` : ''}${coverage?.status === 'not-visible' && !state.protectionConfirmations[coverage.key] ? `<div class="protection-dialog-actions"><button class="protection-confirm" type="button" data-action="protection-confirm" data-category="${coverage.key}">I already have cover</button><button class="protection-explore-area" type="button" data-action="protection-explore-area">Explore this area</button></div>` : `<button class="protection-explore-area" type="button" data-action="protection-explore-area">Explore this area</button>`}`}</section></div>`;
+}
+function openProtectionDialog(focusSelector) {
+  protectionFocusSelector = focusSelector;
+  document.querySelector('.protection-info[open]')?.removeAttribute('open');
+  render();
+  document.querySelector('.protection-dialog-close')?.focus();
+}
+function closeProtectionDialog() {
+  const focusSelector = protectionFocusSelector;
+  state.protectionReview = false;
+  state.protectionCategory = null;
+  render();
+  if (focusSelector) document.querySelector(focusSelector)?.focus();
+  protectionFocusSelector = null;
+}
 
 function lockScreen() {
   return `<div class="lock-screen"><div class="lock-status"><span>9:41</span><span>▮▮▮ ◔ ▰</span></div><div class="lock-content"><span class="lock-lock">⌁</span><div class="lock-time">9:41</div><div class="lock-date">Monday, 7 September</div>${state.pushVisible ? `<button class="push-card push-arrived" data-action="unlock" aria-label="Open SC Mobile notification"><div class="push-app"><img src="assets/scb/sc-wordmark.png" alt="Standard Chartered" /></div><div class="push-copy"><div><strong>SC Mobile</strong><span>now</span></div><b>${person.title}</b><p>${person.nudge}</p></div></button><p class="tap-hint">Tap notification to open</p>` : ''}</div></div>`;
@@ -221,7 +305,7 @@ function bankingHome() {
   return `<div class="screen banking-home"><header class="banking-header"><div class="sc-app-status"><span>11:28</span><span>▮▮▮ ◔ ▰</span></div><div class="sc-header-actions"><div></div><div><button class="sc-icon" aria-label="Notifications">♧<i></i></button><button class="sc-icon" aria-label="Messages">▢</button><button class="logout">Logout</button></div></div><h1>Pay &amp; Transfer</h1></header><div class="banking-body"><section class="transfer-panel"><div class="transfer-option">${scIcon('accounts')}<b>Between<br>My Accounts</b></div><div class="transfer-option">${scIcon('paynow')}<b>PayNow</b></div><div class="transfer-option">${scIcon('scan')}<b>Scan<br>&amp; Pay</b></div><div class="transfer-option">${scIcon('transfer')}<b>Local<br>Transfer</b></div><div class="transfer-option">${scIcon('globe')}<b>International<br>Transfer</b></div><div class="transfer-option">${scIcon('card')}<b>Pay All<br>Credit Cards</b></div></section><div class="transfer-pills"><button>${scIcon('bill')}Pay Bills</button><button>${scIcon('person')}Add Payees</button><button>${scIcon('receipt')}EasyBill</button><button data-action="open">${scIcon('insurance')}Insurance</button></div><nav class="transfer-tabs"><button>My Payees</button><button class="selected">Transactions</button><button>Scheduled</button><button>Manage</button></nav><h2>12 Feb 2025</h2>${[1,2,3].map(() => `<div class="transaction-row"><span>▯</span><i></i><b>SGD 0.01</b></div>`).join('')}</div>${state.notificationVisible ? `<button class="in-app-pop notification-arrived" data-action="open" aria-label="Open new Portfolio Intelligence insight"><span class="notification-logo"><img src="assets/scb/sc-wordmark.png" alt=""/></span><span class="notification-copy"><small>SC Mobile · now</small><b>Portfolio Intelligence</b><strong>As life evolves, it can be useful to revisit how your finances support your future priorities.</strong></span><span class="notification-chevron">›</span></button>` : ''}</div>`;
 }
 
-function scIcon(type) { const paths={paynow:'<path d="M8 12h8M12 8l4 4-4 4M16 18H8M12 22l-4-4 4-4"/>',invest:'<path d="M12 4l5 4v12H7V8l5-4Zm0 5v7m-3-4h6"/>',insurance:'<path d="M12 3 19 6v5c0 4.5-2.9 8.1-7 10-4.1-1.9-7-5.5-7-10V6l7-3Zm-3 9 2 2 4-4"/>',insights:'<path d="M9 18h6m-5 3h4M8.5 15.5A6 6 0 1 1 15.5 15.5L14 18h-4l-1.5-2.5Z"/>',refer:'<path d="M8 19V9a2 2 0 0 1 4 0v5m0-3a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v5c0 3-2 5-5 5h-3c-2 0-4-1-5-3l-2-4a2 2 0 0 1 3-2l1 1"/>',accounts:'<path d="M7 8h10v12H7zM10 5h7v12M9 12h6"/>',scan:'<path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4M8 12h8"/>',transfer:'<path d="M5 9h12m-3-3 3 3-3 3M19 15H7m3 3-3-3 3-3"/>',globe:'<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2 2 3 5 3 8s-1 6-3 8c-2-2-3-5-3-8s1-6 3-8"/>',card:'<rect x="4" y="7" width="16" height="10" rx="2"/><path d="M4 11h16m-9 3h3"/>',bill:'<path d="M7 4h10v16l-2-1-3 1-3-1-2 1V4Zm3 5h4m-4 3h4"/>',person:'<circle cx="12" cy="8" r="3"/><path d="M5 20c1-4 3-6 7-6s6 2 7 6M18 7v4m-2-2h4"/>',receipt:'<path d="M7 4h10v16l-2-1-3 1-3-1-2 1V4Zm3 5h4m-4 3h4"/>'}; return `<span class="sc-line-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${paths[type] || paths.insights}</svg></span>`; }
+function scIcon(type) { const paths={paynow:'<path d="M8 12h8M12 8l4 4-4 4M16 18H8M12 22l-4-4 4-4"/>',invest:'<path d="M12 4l5 4v12H7V8l5-4Zm0 5v7m-3-4h6"/>',insurance:'<path d="M12 3 19 6v5c0 4.5-2.9 8.1-7 10-4.1-1.9-7-5.5-7-10V6l7-3Zm-3 9 2 2 4-4"/>',insights:'<path d="M9 18h6m-5 3h4M8.5 15.5A6 6 0 1 1 15.5 15.5L14 18h-4l-1.5-2.5Z"/>',refer:'<path d="M8 19V9a2 2 0 0 1 4 0v5m0-3a2 2 0 0 1 4 0v2m0-1a2 2 0 0 1 4 0v5c0 3-2 5-5 5h-3c-2 0-4-1-5-3l-2-4a2 2 0 0 1 3-2l1 1"/>',accounts:'<path d="M7 8h10v12H7zM10 5h7v12M9 12h6"/>',scan:'<path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4M8 12h8"/>',transfer:'<path d="M5 9h12m-3-3 3 3-3 3M19 15H7m3 3-3-3 3-3"/>',globe:'<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2 2 3 5 3 8s-1 6-3 8c-2-2-3-5-3-8s1-6 3-8"/>',card:'<rect x="4" y="7" width="16" height="10" rx="2"/><path d="M4 11h16m-9 3h3"/>',bill:'<path d="M7 4h10v16l-2-1-3 1-3-1-2 1V4Zm3 5h4m-4 3h4"/>',person:'<circle cx="12" cy="8" r="3"/><path d="M5 20c1-4 3-6 7-6s6 2 7 6M18 7v4m-2-2h4"/>',receipt:'<path d="M7 4h10v16l-2-1-3 1-3-1-2 1V4Zm3 5h4m-4 3h4"/>'}; Object.assign(paths,{travel:'<path d="m3 17 18-10-7 13-3-6-8 3Zm8-3 4 1"/>',home:'<path d="m3 10 9-7 9 7M5 9v12h14V9m-9 12v-7h4v7"/>',cyber:'<path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6l8-3Zm-3 9v-2a3 3 0 0 1 6 0v2m-7 0h8v5H8z"/>',life:'<path d="M20.8 8.8c0 5-8.8 11-8.8 11s-8.8-6-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"/>',health:'<path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6l8-3Zm0 5v8m-4-4h8"/>',family:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6m0-4c3.5-.5 5.5 1 6 4"/>',income:'<path d="M4 19V5m0 14h17M8 15l4-4 3 2 5-6m-1 0h-4m4 0v4"/>',critical:'<path d="M20.8 8.8c0 5-8.8 11-8.8 11s-8.8-6-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8ZM5 12h4l2-3 3 6 2-3h3"/>',care:'<path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.9A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Zm0-11v6m-3-3h6"/>',legacy:'<path d="M6 3h9l4 4v14H6zM15 3v5h4m-9 4h6m-6 4h6m-6 4h4"/>'}); return `<span class="sc-line-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${paths[type] || paths.insights}</svg></span>`; }
 function quickActions() { return `<div class="quick-actions-row"><button>${scIcon('paynow')}PayNow</button><button>${scIcon('invest')}SC Invest</button><button data-action="open">${scIcon('insurance')}Insurance</button><button data-action="open">${scIcon('insights')}Insights</button><button>${scIcon('refer')}Refer</button></div>`; }
 
 function portfolioLanding() {
@@ -240,17 +324,35 @@ function assistantPanel() { const opening = `I’m your Portfolio Intelligence g
 function journey() { const content = state.tab === 'overview' ? overview() : state.tab === 'assumptions' ? assumptionsPanel() : options(); return `<div class="screen"><header class="journey-top"><button class="back" data-action="home" aria-label="Back to home">‹</button><span class="journey-title">Portfolio Intelligence</span><button class="reset" data-action="reset">Reset</button></header><div class="journey"><div class="notice">Illustrative prototype using synthetic customer data. It does not provide a quote, recommendation, underwriting or eligibility outcome.</div><section class="hero"><span class="eyebrow">${person.name}'s portfolio insight</span><h1>${person.title}</h1><p>${person.summary}</p><div class="gap-number"><div class="gap-amount"><b>S$${number(gap())}</b><details class="gap-help"><summary aria-label="Explain this illustrative amount" aria-controls="gap-help-copy">?</summary><div id="gap-help-copy" class="gap-help-copy" role="note">${person.gapHelp}</div></details></div><span>${person.gapLabel(state.values)}<br>based on current assumptions</span></div><button class="hero-assistant" data-action="assistant">✦ Ask Portfolio Intelligence</button></section><nav class="tabs" aria-label="Insight sections"><button class="${state.tab === 'overview' ? 'active':''}" data-action="tab" data-tab="overview">Your outlook</button><button class="${state.tab === 'assumptions' ? 'active':''}" data-action="tab" data-tab="assumptions">Your scenario</button><button class="${state.tab === 'options' ? 'active':''}" data-action="tab" data-tab="options">Ways forward</button></nav>${state.booking ? booking() : content}</div></div>${state.assistant ? assistantPanel() : ''}`; }
 function booking() { return `<article class="card booking"><div class="booking-icon">✓</div><span class="eyebrow">Conversation request received</span><h2>We will be in touch to arrange your review</h2><p>An SC Wealth Planning specialist will contact ${person.name} through the preferred channel on file to arrange a conversation about the illustrative scenario. The details explored here will help start that discussion.</p><div class="booking-next"><b>What happens next</b><span>1. We confirm a suitable time</span><span>2. You review your goals with a specialist</span><span>3. Any product discussion follows the required fact-find</span></div><p class="booking-fine">This is a demonstrator confirmation only—no real contact request has been submitted.</p><div class="actions"><button class="primary" data-action="home">Return to SC Mobile</button><button class="quiet" data-action="reset">Reset demo</button></div></article>`; }
 function nav() { return `<nav class="bottom-nav rebuilt-nav" aria-label="Primary navigation"><button class="nav-link active" data-action="home"><span>⌂</span>Home</button><button class="nav-link"><span>⇆</span>Pay &amp; Transfer</button><button class="nav-link" data-action="open"><span>▥</span>Invest &amp; Insure</button><button class="nav-link"><span>◌</span>Discover</button><button class="nav-link"><span>▢</span>Services</button></nav>`; }
-function render() { if (state.view !== 'banking' && notificationTimer) { clearTimeout(notificationTimer); notificationTimer = null; } if (state.view !== 'lock' && pushTimer) { clearTimeout(pushTimer); pushTimer = null; } app.innerHTML = state.view === 'lock' ? lockScreen() : state.view === 'email' ? emailScreen() : state.view === 'banking' ? bankingHome() + nav() : journey() + nav(); if (state.view === 'banking' && !state.notificationVisible && !notificationTimer) { notificationTimer = setTimeout(() => { notificationTimer = null; if (state.view === 'banking' && !state.notificationVisible) { state.notificationVisible = true; render(); } }, 900); } if (state.view === 'lock' && !state.pushVisible && !pushTimer) { pushTimer = setTimeout(() => { pushTimer = null; if (state.view === 'lock' && !state.pushVisible) { state.pushVisible = true; render(); } }, 900); } }
+function render() {
+  const homeScrollTop = state.view === 'banking' && lastRenderedView === 'banking' ? app.querySelector('.banking-home')?.scrollTop || 0 : 0;
+  if (state.view !== 'banking' && notificationTimer) { clearTimeout(notificationTimer); notificationTimer = null; }
+  if (state.view !== 'lock' && pushTimer) { clearTimeout(pushTimer); pushTimer = null; }
+  app.innerHTML = (state.view === 'lock' ? lockScreen() : state.view === 'email' ? emailScreen() : state.view === 'banking' ? bankingHome() + nav() : journey() + nav()) + (state.view === 'banking' ? protectionDialog() : '');
+  if (state.view === 'banking') {
+    const homeScreen = app.querySelector('.banking-home');
+    homeScreen?.insertAdjacentHTML('beforeend', protectionSnapshot());
+    if (lastRenderedView === 'banking' && homeScreen) homeScreen.scrollTop = homeScrollTop;
+  }
+  lastRenderedView = state.view;
+  if (state.view === 'banking' && !state.notificationVisible && !notificationTimer) { notificationTimer = setTimeout(() => { notificationTimer = null; if (state.view === 'banking' && !state.notificationVisible) { state.notificationVisible = true; render(); } }, 900); }
+  if (state.view === 'lock' && !state.pushVisible && !pushTimer) { pushTimer = setTimeout(() => { pushTimer = null; if (state.view === 'lock' && !state.pushVisible) { state.pushVisible = true; render(); } }, 900); }
+}
 
 app.addEventListener('click', event => {
   const target = event.target.closest('[data-action]'); if (!target) return;
   const action = target.dataset.action;
+  if (action === 'protection-review') { state.protectionReview = true; state.protectionCategory = null; openProtectionDialog('.protection-review'); return; }
+  if (action === 'protection-category') { const key = target.dataset.category; state.protectionReview = false; state.protectionCategory = key; openProtectionDialog(`.protection-category[data-category="${key}"]`); return; }
+  if (action === 'protection-close' || action === 'protection-backdrop') { if (action === 'protection-backdrop' && event.target !== target) return; closeProtectionDialog(); return; }
+  if (action === 'protection-confirm') { state.protectionConfirmations[target.dataset.category] = true; state.protectionCategory = null; state.protectionMessage = 'Thanks — we’ve noted your confirmation for this demonstration session.'; closeProtectionDialog(); return; }
+  if (action === 'protection-explore-area') { state.protectionReview = false; state.protectionCategory = null; protectionFocusSelector = null; route('journey'); return; }
   if (action === 'open') route('journey');
   if (action === 'unlock') { route('journey'); }
   if (action === 'home') { state.view = 'banking'; state.booking = false; render(); }
   if (action === 'tab') { state.tab = target.dataset.tab; state.booking = false; state.assistant = false; render(); }
   if (action === 'defer' || action === 'decline') { state.response = action; state.view = 'home'; render(); }
-  if (action === 'reset') { state = { values:{...defaults}, view:initialView, tab:'overview', response:null, booking:false,assistant:false,chat:[],notificationVisible:false,pushVisible:false,customValues:false }; render(); }
+  if (action === 'reset') { state = { values:{...defaults}, view:initialView, tab:'overview', response:null, booking:false,assistant:false,chat:[],notificationVisible:false,pushVisible:false,customValues:false,protectionReview:false,protectionCategory:null,protectionConfirmations:{},protectionMessage:null }; lastRenderedView = null; protectionFocusSelector = null; render(); }
   if (action === 'book') { state.booking = true; render(); }
   if (action === 'assistant') { state.assistant = true; render(); }
   if (action === 'assistant-close') { state.assistant = false; render(); }
