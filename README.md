@@ -12,6 +12,12 @@ Open [index.html](index.html) in a modern desktop browser. Each route begins wit
 
 For presentation, use browser full-screen mode. The application intentionally keeps a portrait phone frame on desktop displays.
 
+## Versioning and commits
+
+The current release number is recorded in [VERSION](VERSION). Releases use semantic version tags in the form `vMAJOR.MINOR.PATCH`: increase MAJOR for incompatible changes, MINOR for new capabilities, and PATCH for fixes. Update `VERSION` and add a dated summary to [CHANGELOG.md](CHANGELOG.md) with each release. Tag the release commit with an annotated `v...` tag and push the branch and tag to GitHub.
+
+Commit subjects must describe the actual change. Use a clear prefix such as `feat:`, `fix:`, `docs:`, or `chore:` followed by a concise summary; avoid vague subjects such as “updates” or “changes.”
+
 ## Hosting later
 
 The prototype has no build step or server dependency. Upload the root files (`index.html`, `styles.css`, and `app.js`) to any static host after local acceptance. Recheck all externally sourced product information immediately before sharing outside the project team.
