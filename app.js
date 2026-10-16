@@ -248,6 +248,15 @@ let pushTimer = null;
 const number = value => new Intl.NumberFormat('en-SG').format(Math.round(value));
 const gap = () => person.calculation(state.values);
 const route = view => { state.view = view; state.tab = 'overview'; render(); };
+function resetDemo() {
+  state = { values:{...defaults}, view:initialView, tab:'overview', response:null, booking:false,assistant:false,chat:[],notificationVisible:false,pushVisible:false,customValues:false,protectionReview:false,protectionCategory:null,protectionConfirmations:{},protectionMessage:null };
+  lastRenderedView = null;
+  protectionFocusSelector = null;
+  touchPreviewPersona = null;
+  closePersonaPopover();
+  closeMomentCallout();
+  render();
+}
 function protectionStatus(coverage) {
   if (state.protectionConfirmations[coverage.key]) return { key:'cover-indicated', label:'Cover indicated', mark:'i' };
   const statuses = {
@@ -352,7 +361,7 @@ app.addEventListener('click', event => {
   if (action === 'home') { state.view = 'banking'; state.booking = false; render(); }
   if (action === 'tab') { state.tab = target.dataset.tab; state.booking = false; state.assistant = false; render(); }
   if (action === 'defer' || action === 'decline') { state.response = action; state.view = 'home'; render(); }
-  if (action === 'reset') { state = { values:{...defaults}, view:initialView, tab:'overview', response:null, booking:false,assistant:false,chat:[],notificationVisible:false,pushVisible:false,customValues:false,protectionReview:false,protectionCategory:null,protectionConfirmations:{},protectionMessage:null }; lastRenderedView = null; protectionFocusSelector = null; render(); }
+  if (action === 'reset') { resetDemo(); return; }
   if (action === 'book') { state.booking = true; render(); }
   if (action === 'assistant') { state.assistant = true; render(); }
   if (action === 'assistant-close') { state.assistant = false; render(); }
@@ -360,5 +369,6 @@ app.addEventListener('click', event => {
   if (action === 'ask') { const prompts = { why:'Why did you identify this gap?', change:'Show me what changes the outcome', next:'What could I do next?' }; const replies = { why: `We identified this as a potential gap because ${person.signals[0].toLowerCase()} ${person.signals[1]} The result is illustrative and you can review every input in “Your outlook”.`, change: `The largest drivers are shown in “Your scenario”. Try adjusting one card at a time—the illustrative gap refreshes immediately so you can see what makes the greatest difference.`, next: `There are three appropriate next steps: explore the solution areas, review the public product references with an adviser, or request a conversation with an SC Wealth Planning specialist. You remain in control.` }; state.chat.push({role:'user',text:prompts[target.dataset.prompt]},{role:'assistant',text:replies[target.dataset.prompt]}); state.assistant = true; render(); }
   if (action === 'detail') { state.tab = 'options'; alert('Demonstration only: product terms, suitability, availability and any application would be confirmed with an authorised adviser.'); }
 });
+document.querySelector('.demo-reset')?.addEventListener('click', resetDemo);
 app.addEventListener('input', event => { const key = event.target.dataset.field; if (!key || event.target.value === '') return; const field = person.fields.find(item => item.key === key); state.values[key] = Math.max(field.min, Math.min(field.max, Number(event.target.value))); state.customValues = true; document.querySelectorAll(`[data-field="${key}"]`).forEach(input => { if (input !== event.target) input.value = state.values[key]; }); const out = document.querySelector(`#out-${key}`); if(out) out.textContent = `${field.prefix || ''}${number(state.values[key])}${field.suffix || ''}`; const formula = event.target.closest('.panel')?.querySelector('.formula'); if(formula) formula.innerHTML = `<strong>Calculation:</strong><br>${person.formula(state.values)}<br><strong>Illustrative gap: S$${number(gap())}</strong>`; const heroNumber = document.querySelector('.gap-number b'); if(heroNumber) heroNumber.textContent = `S$${number(gap())}`; });
 render();

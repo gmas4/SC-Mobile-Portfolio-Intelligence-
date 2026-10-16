@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.2] - 2026-10-16
+
+- Added a persistent demo-toolbar reset control that returns any screen to the selected persona's starting state.
+
 ## [1.1.1] - 2026-10-15
 
 - Increased the mobile journey Reset control's tap target to 44px without changing its visual style.
