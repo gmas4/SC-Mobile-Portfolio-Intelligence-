@@ -1,23 +1,15 @@
 # Changelog
 
-## [1.1.2] - 2026-10-16
+## [1.1.0] — Insurance Portfolio View — 2026-10-28
 
-- Added a persistent demo-toolbar reset control that returns any screen to the selected persona's starting state.
+- Added a holistic current financial picture.
+- Added the client-requested Insurance Portfolio direction based on `Prototype screenshots/Vision_Gautam.png`.
+- Added mortgage, household, existing protection, and savings and investments context.
+- Preserved the existing needs-led scenario journey, Portfolio Intelligence assistant, Ways Forward, and adviser handoff.
+- Added stable version URLs and a presenter-level selector backed by `versions.json`.
 
-## [1.1.1] - 2026-10-15
+## [1.0.0] — Baseline — 2026-10-28
 
-- Increased the mobile journey Reset control's tap target to 44px without changing its visual style.
-
-## [1.1.0] - 2026-10-15
-
-- Made the SC Mobile home content scrollable within the phone while keeping the phone frame and bottom navigation fixed.
-- Added a shared, persona-configured protection snapshot with covered, not visible, and worth reviewing statuses for Sarah, Alex, and Simon.
-- Added protection details, an in-session cover confirmation, portfolio review, and links into the existing Portfolio Intelligence journey.
-
-## [1.0.0] - 2026-10-15
-
-Baseline release of the SC Mobile Portfolio Intelligence prototype.
-
-- Added touch-friendly persona previews for Simon, Alex, and Sarah. (`60ca9bc`, `0f36ad6`)
-- Added shared explanations for each persona's illustrative amount. (`d3a9818`, `307c8e5`)
-- Added the customer-moment explainer callout beside the persona selectors. (`e524313`)
+- Frozen original working Portfolio Intelligence prototype.
+- Preserved Sarah, Alex, and Simon journeys, scenario calculations, AI assistant, Ways Forward, adviser handoff, scrolling, persona switching, and protection interactions.
+- Archived the former repository tag as `v1.0.0-legacy-pre-versioning` before assigning `v1.0.0` to the requested frozen baseline.

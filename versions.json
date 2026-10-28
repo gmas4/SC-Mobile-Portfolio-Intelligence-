@@ -1,0 +1,14 @@
+[
+  {
+    "version": "v1.0",
+    "label": "Baseline",
+    "path": "/versions/v1.0/",
+    "status": "stable"
+  },
+  {
+    "version": "v1.1",
+    "label": "Insurance Portfolio View",
+    "path": "/versions/v1.1/",
+    "status": "stable"
+  }
+]

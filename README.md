@@ -1,5 +1,14 @@
 # SC Mobile Protection Portfolio Intelligence Prototype
 
+## Stable prototype versions
+
+- `versions/v1.0/` — frozen baseline
+- `versions/v1.1/` — Insurance Portfolio View
+
+The root URL redirects to the latest stable release while preserving query parameters such as `?persona=sarah`. The presenter-level selector reads its labels, paths, and release status from `versions.json` and preserves the active persona when switching versions.
+
+Each release is a static snapshot. Product changes must be made in a new version directory rather than by modifying an existing stable snapshot.
+
 This is a local-first, static interactive demonstrator. It runs entirely in the browser and contains synthetic customer data.
 
 ## Run locally
