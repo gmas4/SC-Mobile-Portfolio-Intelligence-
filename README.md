@@ -9,6 +9,12 @@ The root URL redirects to the latest stable release while preserving query param
 
 Each release is a static snapshot. Product changes must be made in a new version directory rather than by modifying an existing stable snapshot.
 
+### v1.1 external-policy demonstration
+
+The v1.1 snapshot supports a session-only, synthetic journey for adding externally held insurance. PDF, JPG and PNG selection is accepted by the UI, while the displayed extraction uses clearly labelled synthetic fixtures; no document is uploaded, retained or parsed by a production service. Policy records keep source, provenance, consent, customer-confirmation status and an illustrative timestamp so a future governed integration can replace the fixture layer without coupling the UI to one provider.
+
+International interpretations use cautious states—likely included, unclear/check required, not identified and review required—and never determine claim outcomes. Future integrations may include SGFinDex, insurer APIs, partner feeds, Customer 360 or governed insurance data products, subject to consent and appropriate controls.
+
 This is a local-first, static interactive demonstrator. It runs entirely in the browser and contains synthetic customer data.
 
 ## Run locally
