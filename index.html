@@ -13,16 +13,20 @@
   <body>
     <main><div class="loader" aria-hidden="true"></div><p>Loading the latest stable prototype…</p><noscript><p>JavaScript is required to select the latest version.</p></noscript></main>
     <script>
-      fetch('./versions.json', { cache: 'no-cache' })
-        .then(response => response.json())
-        .then(versions => {
-          const latest = versions.filter(item => item.status === 'stable').at(-1);
-          if (!latest) throw new Error('No stable prototype version is configured.');
-          location.replace(`.${latest.path}${location.search}${location.hash}`);
-        })
-        .catch(() => {
-          document.querySelector('main').innerHTML = '<p>Unable to load the prototype version list. <a href="./versions/v1.1/">Open the latest version</a>.</p>';
-        });
+      if (location.protocol === 'file:') {
+        location.replace(`./versions/v1.1/index.html${location.search}${location.hash}`);
+      } else {
+        fetch('./versions.json', { cache: 'no-cache' })
+          .then(response => response.json())
+          .then(versions => {
+            const latest = versions.filter(item => item.status === 'stable').at(-1);
+            if (!latest) throw new Error('No stable prototype version is configured.');
+            location.replace(`.${latest.path}${location.search}${location.hash}`);
+          })
+          .catch(() => {
+            document.querySelector('main').innerHTML = '<p>Unable to load the prototype version list. <a href="./versions/v1.1/index.html">Open the latest version</a>.</p>';
+          });
+      }
     </script>
   </body>
 </html>

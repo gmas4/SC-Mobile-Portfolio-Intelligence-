@@ -3,12 +3,18 @@
     "version": "v1.0",
     "label": "Baseline",
     "path": "/versions/v1.0/",
-    "status": "stable"
+    "status": "superseded"
   },
   {
     "version": "v1.1",
     "label": "Insurance Portfolio View",
     "path": "/versions/v1.1/",
+    "status": "superseded"
+  },
+  {
+    "version": "v1.2",
+    "label": "Holistic Portfolio Outlook",
+    "path": "/versions/v1.2/",
     "status": "stable"
   }
 ]

@@ -4,10 +4,15 @@
 
 - `versions/v1.0/` — frozen baseline
 - `versions/v1.1/` — Insurance Portfolio View
+- `versions/v1.2/` — Holistic Portfolio Outlook (current)
 
 The root URL redirects to the latest stable release while preserving query parameters such as `?persona=sarah`. The presenter-level selector reads its labels, paths, and release status from `versions.json` and preserves the active persona when switching versions.
 
 Each release is a static snapshot. Product changes must be made in a new version directory rather than by modifying an existing stable snapshot.
+
+### v1.2 holistic portfolio presentation
+
+The v1.2 client story connects mortgage and household commitments, savings and investments, and known insurance protection into one explainable outlook. The HTML deck is available from the prototype footer using **Present the proposition**. Its first increment is a narrow, source-labelled portfolio snapshot with a data-quality baseline and customer-comprehension measures; access, policy matching, and data quality must be validated before a live pilot.
 
 ### v1.1 external-policy demonstration
 
@@ -19,13 +24,15 @@ This is a local-first, static interactive demonstrator. It runs entirely in the 
 
 ## Run locally
 
-Open [index.html](index.html) in a modern desktop browser. Each route begins with a generic iPhone lock-screen push notification; tap it to open the SC Mobile home experience. Use the persona links in the top demo bar or open a direct route:
+Open [index.html](index.html) in a modern browser. When opened as a local file, the launcher opens the latest stable version directly. Each customer route begins with its illustrative entry experience; follow the on-screen prompt to open the SC Mobile journey. Use the persona links in the presenter bar or open a direct route:
 
 - `index.html?persona=simon`
 - `index.html?persona=alex`
 - `index.html?persona=sarah`
 
 For presentation, use browser full-screen mode. The application intentionally keeps a portrait phone frame on desktop displays.
+
+The latest presenter footer links to [presentation.html](versions/v1.2/presentation.html), a self-contained HTML deck with slide navigation, presenter cues, and direct links into each persona journey. Use the arrow keys or controls at the bottom to move through the story.
 
 ## Versioning and commits
 

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SC Mobile needs-intelligence demonstrator using synthetic data." />
+    <link rel="icon" href="data:," />
+    <title>SCB | Protection Insights Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="demo-bar" aria-label="Prototype controls">
+      <nav aria-label="Demo personas">
+        <a href="?persona=simon" data-persona="simon" aria-describedby="persona-popover" aria-expanded="false">Simon · Retirement</a>
+        <a href="?persona=alex" data-persona="alex" aria-describedby="persona-popover" aria-expanded="false">Alex · Protection</a>
+        <a href="?persona=sarah" data-persona="sarah" aria-describedby="persona-popover" aria-expanded="false">Sarah · Family</a>
+      </nav>
+      <div class="demo-guides" role="group" aria-label="Presenter guides">
+      <div class="moment-explainer">
+        <button class="moment-trigger" type="button" aria-label="See how the client intelligence journey works" aria-controls="moment-callout" aria-expanded="false">How the journey works</button>
+        <aside id="moment-callout" class="moment-callout" role="note" aria-hidden="true">
+          <strong>From data to a useful conversation</strong>
+          <p class="journey-logic-intro">The deck's strategy, shown through this illustrative customer journey.</p>
+          <ol class="journey-logic">
+            <li><span class="logic-step">01</span><div><b>Build the client picture</b><small>Bring together bank-held, partner and customer-shared information; make gaps visible.</small><em>In the demo: financial picture</em></div></li>
+            <li><span class="logic-step">02</span><div><b>Anticipate a possible need</b><small>Use a life event or financial signal to raise a relevant question before a product.</small><em>In the demo: three illustrative moments</em></div></li>
+            <li><span class="logic-step">03</span><div><b>Choose the right response</b><small>Let the customer validate or correct the need, then explore, defer or decline.</small><em>In the demo: customer validation</em></div></li>
+            <li><span class="logic-step">04</span><div><b>Start the right conversation</b><small>Offer a useful digital next step or a conversation with an adviser.</small><em>In the demo: options and adviser handoff</em></div></li>
+            <li class="logic-future"><span class="logic-step">05</span><div><b>Learn from outcomes</b><small>Use corrections and eventual outcomes to improve future relevance.</small><em>Future state: this prototype keeps responses in-session; it has no learning loop.</em></div></li>
+          </ol>
+          <small class="logic-footnote">Personas and calculations are illustrative. A modelled need remains a hypothesis until the customer validates it.</small>
+        </aside>
+      </div>
+      <div class="next-steps-explainer">
+        <details class="next-steps-details">
+          <summary class="moment-trigger" aria-label="See the data and architecture needed for an SCB pilot">What is needed next?</summary>
+          <button class="next-guide-backdrop" type="button" tabindex="-1" data-close-next-guide aria-label="Close data readiness guide"></button>
+          <aside class="moment-callout next-steps-callout" role="dialog" aria-modal="true" aria-labelledby="next-guide-title">
+            <div class="next-guide-heading"><strong id="next-guide-title">A practical path to a trusted household view</strong><button class="next-guide-close" type="button" data-close-next-guide aria-label="Close data readiness guide">×</button></div>
+            <p class="journey-logic-intro">Bring mortgage, family, savings and protection context together carefully, then test whether it helps customers understand their outlook.</p>
+            <div class="target-data-flow" role="img" aria-label="Bank and partner sources plus customer context flow into a sourced portfolio view, a review question and an appropriate next step">
+              <span>Sources</span><i aria-hidden="true">&rsaquo;</i><span>Household view</span><i aria-hidden="true">&rsaquo;</i><span>Portfolio insight</span><i aria-hidden="true">&rsaquo;</i><span>Customer choice</span><i aria-hidden="true">&rsaquo;</i><span>Outcome</span>
+            </div>
+            <p class="data-flow-caption">Target architecture to validate with SCB. Current platforms, access and ownership are not yet confirmed.</p>
+            <section class="recommended-use-case" aria-labelledby="recommended-use-case-title">
+              <span class="use-case-kicker">Recommended first increment</span>
+              <h2 id="recommended-use-case-title">A trusted snapshot of protection already visible to SCB</h2>
+              <p>For one agreed customer group and selected policy categories, create a read-only view with the source and last-updated date. Keep mortgage, family and savings context visible as separate inputs.</p>
+              <div class="use-case-boundary"><strong>Be clear about the limit:</strong> this is a starting view, not proof of complete cover, a coverage-gap calculation or a product recommendation. “Not visible” does not mean “no cover.”</div>
+              <small><strong>First data gate:</strong> agree a permitted sample, source owner and matching approach; check policyholder/insured links and fields such as insurer, product, status, benefit or limit, and key dates.</small>
+            </section>
+            <h3 class="increment-heading">What increment one can prove</h3>
+            <ol class="increment-list">
+              <li><span class="increment-number">1</span><div><b>Check data fitness</b><small>Measure permitted access, links between customer, policyholder and covered person, key-field completeness, freshness, duplicates and conflicting records.</small><em>Learn: which sources and fields are dependable enough for a first view.</em></div></li>
+              <li><span class="increment-number">2</span><div><b>Test whether the view makes sense</b><small>Ask reviewers to find a policy, identify its source and date, and explain what “not visible” means.</small><em>Measure: task success, source/status understanding, corrections and confusing labels.</em></div></li>
+              <li><span class="increment-number">3</span><div><b>Agree what to build next</b><small>Review data gaps and customer feedback with product, operations and control owners.</small><em>Learn: what customers need to add, which policy type to include next and what permissions are still needed.</em></div></li>
+            </ol>
+            <div class="first-increment-measures"><b>Measures to establish</b><div><strong>Record quality</strong><span>Reference-checked matches across customer, policyholder and covered person; key-field completeness; record age; duplicates and conflicts.</span></div><div><strong>Customer clarity</strong><span>Can people identify the source and date, distinguish “not visible” from “no cover”, and spot details to correct?</span></div><div><strong>What we learn</strong><span>Which sources are usable, what context is missing, and what should be added in the next increment.</span></div></div>
+            <div class="first-increment-outcome"><b>Outcome</b><span>A source-labelled snapshot, a data-quality baseline and an evidence-based next-step decision. Set thresholds after profiling rather than inventing targets in advance.</span></div>
+            <div class="data-team-ask"><b>What we need from the Data team</b><span>Help scope the sample, identify policy and household data owners, confirm permitted access and matching keys, and agree how data quality and customer comprehension will be reviewed.</span></div>
+            <p class="data-principle"><strong>What this will not prove yet:</strong> total cover, a true protection gap, sales uplift or that every external policy can be identified.</p>
+          </aside>
+        </details>
+      </div>
+      </div>
+    </aside>
+    <div id="persona-popover" class="persona-popover" role="tooltip" aria-hidden="true"></div>
+    <main class="stage">
+      <section class="phone" aria-label="SC Mobile prototype">
+        <div id="app" class="app" aria-live="polite"></div>
+      </section>
+    </main>
+    <footer class="demo-footer" aria-label="Prototype controls">
+      <a class="demo-presenter-link" href="presentation.html">Present the proposition</a>
+      <button class="demo-reset" type="button" aria-label="Reset demo to the selected persona's starting screen">Reset demo</button>
+    </footer>
+    <script src="../version-selector.js" defer></script>
+    <script src="app.js"></script>
+  </body>
+</html>
