@@ -14,7 +14,7 @@
     <main><div class="loader" aria-hidden="true"></div><p>Loading the latest stable prototype…</p><noscript><p>JavaScript is required to select the latest version.</p></noscript></main>
     <script>
       if (location.protocol === 'file:') {
-        location.replace(`./versions/v1.1/index.html${location.search}${location.hash}`);
+        location.replace(`./versions/v1.2/index.html${location.search}${location.hash}`);
       } else {
         fetch('./versions.json', { cache: 'no-cache' })
           .then(response => response.json())
@@ -24,7 +24,7 @@
             location.replace(`.${latest.path}${location.search}${location.hash}`);
           })
           .catch(() => {
-            document.querySelector('main').innerHTML = '<p>Unable to load the prototype version list. <a href="./versions/v1.1/index.html">Open the latest version</a>.</p>';
+            document.querySelector('main').innerHTML = '<p>Unable to load the prototype version list. <a href="./versions/v1.2/index.html">Open the latest version</a>.</p>';
           });
       }
     </script>
