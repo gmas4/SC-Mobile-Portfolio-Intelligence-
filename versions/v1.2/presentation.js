@@ -5,7 +5,6 @@ const progress = document.querySelector('#deck-progress');
 const dots = document.querySelector('#slide-dots');
 const previous = document.querySelector('[data-action="previous"]');
 const next = document.querySelector('.nav-next');
-const cueToggle = document.querySelector('.notes-toggle');
 let activeIndex = Math.max(0, Math.min(slides.length - 1, Number(location.hash.match(/slide-(\d+)/)?.[1] || 1) - 1));
 
 function renderSlide(index, updateHash = true) {
@@ -41,15 +40,11 @@ document.addEventListener('click', event => {
   if (action === 'next') renderSlide(activeIndex + 1);
   if (action === 'previous') renderSlide(activeIndex - 1);
   if (action === 'restart') renderSlide(0);
-  if (action === 'notes') {
-    const open = cueToggle.getAttribute('aria-pressed') !== 'true';
-    cueToggle.setAttribute('aria-pressed', String(open));
-    document.querySelectorAll('.presenter-cue').forEach(cue => { cue.open = open; });
-  }
 });
 
 document.addEventListener('keydown', event => {
-  if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest('a,button,summary,input,textarea,select')) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+  if (event.key === ' ' && event.target.closest('a,button')) return;
   if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
     event.preventDefault();
     renderSlide(activeIndex + 1);

@@ -9,163 +9,172 @@
   </head>
   <body>
     <header class="deck-header">
-      <a class="deck-brand" href="index.html" aria-label="Return to the working prototype"><span class="capco-wordmark"><b>CAPCO</b></span><b>Portfolio Intelligence</b></a>
-      <div class="deck-context">Standard Chartered <i></i> Insurance portfolio</div>
-      <div class="deck-header-actions">
-        <button class="notes-toggle" type="button" data-action="notes" aria-pressed="false">Presenter cues</button>
-        <a class="prototype-link" href="index.html?persona=alex">Open prototype</a>
-      </div>
+      <a class="deck-brand" href="index.html" aria-label="Return to the v1.2 prototype"><span class="brand-mark">SC</span><b>Portfolio Intelligence</b></a>
+      <div class="deck-context">STANDARD CHARTERED <i></i> INSURANCE PORTFOLIO</div>
+      <a class="prototype-link" href="index.html?persona=alex" target="_blank" rel="noopener">Open v1.2 prototype <span aria-hidden="true">↗</span></a>
     </header>
 
     <main class="deck-viewport" id="deck-viewport" aria-live="polite">
-      <section class="deck-slide slide-cover is-active" data-title="A clearer insurance portfolio" aria-label="Slide 1 of 9">
+      <section class="deck-slide slide-cover is-active" data-title="Insurance in portfolio context" aria-label="Slide 1 of 9">
         <div class="cover-copy">
           <span class="eyebrow light">Bancassurance proposition</span>
-          <h1>Put insurance in the context of the whole portfolio.</h1>
-          <p class="cover-lede">Bring together a customer's commitments, money and protection, then make clear what the picture may mean and what is still unknown.</p>
-          <div class="cover-actions"><button class="button button-light" data-action="next">Explore the story <span aria-hidden="true">→</span></button><a href="index.html?persona=alex" target="_blank" rel="noopener">Open the insurance journey ↗</a></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>We heard an ambition for timely, data-informed engagement that feels personal. A trusted view of a customer's insurance portfolio is a practical foundation for that conversation.</p></details>
+          <h1>Insurance makes more sense in the context of the whole portfolio.</h1>
+          <p class="cover-lede">A trusted view of commitments, resources and protection can help customers understand what they know, what is missing and what they may want to review.</p>
+          <button class="button button-light" data-action="next">The opportunity <span aria-hidden="true">→</span></button>
         </div>
-        <div class="cover-visual portfolio-preview" aria-label="Illustration of a family protection outlook bringing together money, commitments and insurance">
-          <div class="preview-heading"><span>PORTFOLIO INTELLIGENCE</span><b>Your family protection review</b><small>What SCB already knows</small></div>
-          <div class="preview-row"><i>01</i><span><b>Mortgage</b><small>Balance and tenor</small></span><strong>Commitments</strong></div>
-          <div class="preview-row"><i>02</i><span><b>Family</b><small>Household context</small></span><strong>People</strong></div>
-          <div class="preview-row"><i>03</i><span><b>Protection</b><small>Policies with SCB / partners</small></span><strong>Cover</strong></div>
-          <div class="preview-row preview-unknown"><i>04</i><span><b>Savings and investments</b><small>Accounts and balances</small></span><strong>Resources</strong></div>
-          <div class="preview-foot">A clearer picture. An informed conversation.</div>
+        <div class="cover-visual" role="img" aria-label="Commitments, resources, protection and customer context come together in a household outlook">
+          <svg class="orbit-lines" viewBox="0 0 500 500" aria-hidden="true"><circle cx="250" cy="250" r="170"/><circle cx="250" cy="250" r="112"/><path d="M250 80v308M80 250h340M130 130l240 240M370 130 130 370"/></svg>
+          <div class="cover-core"><span>ONE VIEW</span><b>Household<br/>outlook</b><small>What matters. What is known. What comes next.</small></div>
+          <div class="orbit-node node-top"><i>01</i><span>Commitments</span></div>
+          <div class="orbit-node node-right"><i>02</i><span>Resources</span></div>
+          <div class="orbit-node node-bottom"><i>03</i><span>Protection</span></div>
+          <div class="orbit-node node-left"><i>04</i><span>Customer context</span></div>
+          <div class="orbit-caption">Source · status · date · customer confirmation</div>
         </div>
-        <div class="slide-foot"><span>For discussion · Standard Chartered</span><span>01 / 09</span></div>
+        <div class="slide-foot"><span>Portfolio Intelligence · discussion draft</span><span>01 / 09</span></div>
       </section>
 
       <section class="deck-slide" data-title="The customer need" aria-label="Slide 2 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>01</span> Start with the customer</div>
-          <h2>A meaningful protection view starts with more than insurance policies.</h2>
-          <p class="slide-intro">To understand whether protection fits, bring the customer's insurance into view alongside the commitments and resources it is meant to support.</p>
-          <div class="need-grid">
-            <article><span class="need-number">01</span><h3>My commitments</h3><p>Mortgage, household responsibilities and the goals the customer chooses to share.</p></article>
-            <article><span class="need-number">02</span><h3>My money and cover</h3><p>SCB-visible savings and investments alongside protection known through SCB or its partners.</p></article>
-            <article><span class="need-number">03</span><h3>My next question</h3><p>Understand what may be worth reviewing and add external information where the customer chooses.</p></article>
+          <div class="section-label"><span>01</span> Customer need</div>
+          <h2>Customers must connect a fragmented financial picture before they can judge what protection means.</h2>
+          <p class="slide-intro">A policy list on its own does not show how known cover and available resources relate to the commitments a customer cares about.</p>
+          <div class="fragmented-story">
+            <div class="signal-stack" aria-label="Information is held across separate sources">
+              <article class="signal-card"><span class="signal-icon">⌂</span><div><b>Commitments</b><small>Mortgage · household needs</small></div><i>Bank data</i></article>
+              <article class="signal-card"><span class="signal-icon">◈</span><div><b>Resources</b><small>Savings · investments</small></div><i>Account data</i></article>
+              <article class="signal-card"><span class="signal-icon">◇</span><div><b>Protection</b><small>Policies · benefits · status</small></div><i>SCB / partner</i></article>
+              <div class="signal-caption">Separate records. Different owners. Uneven levels of detail.</div>
+            </div>
+            <div class="story-connector" aria-hidden="true"><span></span><b>?</b><span></span></div>
+            <div class="customer-question"><span class="question-kicker">THE CUSTOMER'S QUESTION</span><blockquote>“Does what I have support the people and commitments that matter to me?”</blockquote><div class="question-outcome"><span>Understand</span><i>→</i><span>Confirm</span><i>→</i><span>Choose</span></div></div>
           </div>
-          <div class="insight-band"><b>The opportunity</b><span>Build a customer-understood view of commitments, resources and protection. Use it to make a family or financial protection conversation more relevant.</span><em>This is the design ambition; the current prototype is an early illustration.</em></div>
-          <div class="stakeholder-value"><b>Value to test</b><span>Clearer choices for customers · more relevant service for SCB · better-prepared, consented conversations for insurer partners.</span></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>The request is broader than a single campaign trigger. The portfolio view is the centre of the proposition; timely engagement is one way to help a customer make use of it.</p></details>
+          <div class="slide-takeaway"><b>The opportunity</b><span>Make the picture understandable before opening a product conversation.</span></div>
         </div>
-        <div class="slide-foot"><span>A portfolio view before a product conversation</span><span>02 / 09</span></div>
+        <div class="slide-foot"><span>Start with the customer's question</span><span>02 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="What a holistic view means" aria-label="Slide 3 of 9">
+      <section class="deck-slide" data-title="Define the portfolio view" aria-label="Slide 3 of 9">
         <div class="slide-inner">
           <div class="section-label"><span>02</span> Define the view</div>
-          <h2>Bring four parts of the customer's picture together.</h2>
-          <div class="holistic-map">
-            <article><span>01</span><b>Commitments</b><small>Mortgage, household and responsibilities</small></article>
-            <article><span>02</span><b>Resources</b><small>Savings, investments and available balances</small></article>
-            <article><span>03</span><b>Protection</b><small>Policyholder, covered people, policy status and benefits visible through SCB or partners</small></article>
-            <article><span>04</span><b>Customer context</b><small>Goals, dependants and external cover they choose to share</small></article>
-            <div class="holistic-result"><b>A more useful protection outlook</b><span>How might known cover and resources support the commitments that matter to this customer?</span></div>
+          <h2>A useful portfolio view joins four inputs and shows how much to trust each one.</h2>
+          <div class="portfolio-map">
+            <div class="portfolio-inputs">
+              <article class="input-card"><span class="input-number">01</span><div><b>Commitments</b><small>Mortgage · household responsibilities</small></div></article>
+              <article class="input-card"><span class="input-number">02</span><div><b>Resources</b><small>Savings · investments · available balances</small></div></article>
+              <article class="input-card"><span class="input-number">03</span><div><b>Protection</b><small>Policies · covered people · benefits</small></div></article>
+              <article class="input-card"><span class="input-number">04</span><div><b>Customer context</b><small>Goals · dependants · shared external cover</small></div></article>
+            </div>
+            <div class="map-join" aria-hidden="true"><span></span><span></span><span></span><span></span><b>+</b></div>
+            <div class="portfolio-output"><span class="output-kicker">A CUSTOMER-UNDERSTOOD VIEW</span><strong>What may be worth reviewing?</strong><p>Relate known cover and resources to the commitments the customer chooses to share.</p><div class="trust-tags"><span>Source</span><span>Status</span><span>As at</span><span>Confirmed?</span></div></div>
           </div>
-          <div class="boundary-callout"><b>Keep the meaning clear</b><span>Every data point needs a source and date. Missing policy information is a question to check with the customer, not proof of a coverage gap.</span></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>“Holistic” should mean a joined-up, usable view, not a promise that every policy is already available or that every term can be interpreted automatically.</p></details>
+          <div class="guardrail-band"><span class="guardrail-icon">!</span><p><b>Make unknowns visible.</b> “Not visible” means we need to check; it does not mean “no cover”.</p></div>
         </div>
-        <div class="slide-foot"><span>Source · status · freshness · customer confirmation</span><span>03 / 09</span></div>
+        <div class="slide-foot"><span>Join the information; preserve its provenance</span><span>03 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="What the prototype shows today" aria-label="Slide 4 of 9">
+      <section class="deck-slide" data-title="The prototype experience" aria-label="Slide 4 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>03</span> The working prototype</div>
-          <h2>The prototype brings the holistic outlook into one conversation.</h2>
-          <div class="vision-walkthrough">
-            <figure><img src="../../Prototype%20screenshots/Vision_Gautam.png" alt="Illustrative Portfolio Intelligence mobile journey combining mortgage, family commitments, existing protection and savings into a family protection review." /><figcaption>Illustrative reference journey · Alex's family protection review</figcaption></figure>
-            <div class="vision-points"><article><b>What informs the outlook</b><p>Mortgage and family commitments, existing protection, and savings or investments.</p></article><article><b>What the customer can do</b><p>Review the assumptions, explore a scenario and choose a next step.</p></article><article><b>What the live prototype adds</b><p>A category-level protection snapshot and an external policy confirmation journey.</p></article></div>
+          <div class="section-label"><span>03</span> The prototype</div>
+          <h2>The prototype turns a portfolio view into a customer-led review.</h2>
+          <div class="prototype-story">
+            <figure class="prototype-shot">
+              <img src="../../Prototype%20screenshots/Vision_Gautam.png" alt="Illustrative mobile portfolio review showing mortgage, family commitments, protection and savings in one view."/>
+              <aside class="prototype-proof" aria-label="Four types of information in the illustrative portfolio view"><span>THE PORTFOLIO VIEW</span><b>Four inputs.<br/>One review.</b><div><i>01</i>Commitments</div><div><i>02</i>Resources</div><div><i>03</i>Protection</div><div><i>04</i>Customer context</div><small>Known information stays labelled and reviewable.</small></aside>
+              <figcaption>Illustrative journey · Alex's family protection review</figcaption>
+            </figure>
+            <div class="prototype-steps">
+              <article><span>01</span><div><b>See what informs the view</b><p>Mortgage, family context, known protection and resources.</p></div></article>
+              <article><span>02</span><div><b>Explore the assumptions</b><p>Adjust an illustrative scenario and see what changes.</p></div></article>
+              <article><span>03</span><div><b>Choose a next step</b><p>Review, update, defer, decline or ask for support.</p></div></article>
+              <a class="inline-link" href="index.html?persona=alex" target="_blank" rel="noopener">Walk through Alex's v1.2 journey <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
-          <div class="boundary-callout"><b>Prototype boundary</b><span>The customer data and S$270,000 scenario shown are illustrative. Policy records are not connected to live systems; uploads use a fixture, not real document extraction.</span></div>
-          <div class="slide-links"><a class="button button-primary" href="index.html?persona=alex" target="_blank" rel="noopener">Walk through the prototype ↗</a><span>Explore the family outlook and protection snapshot.</span></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Call out the gap honestly: the prototype demonstrates the interaction and trust labels, not an integrated insurance inventory. That makes the next data discussion concrete.</p></details>
+          <div class="prototype-boundary"><b>Prototype boundary</b><span>All customer records and the S$270,000 scenario are illustrative. Policies are not connected to live systems; document extraction uses a fixture.</span></div>
         </div>
-        <div class="slide-foot"><span>Illustrative experience · synthetic data only</span><span>04 / 09</span></div>
+        <div class="slide-foot"><span>Demonstrates the interaction, not a live insurance inventory</span><span>04 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="From portfolio to next conversation" aria-label="Slide 5 of 9">
+      <section class="deck-slide" data-title="A trust-led customer journey" aria-label="Slide 5 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>04</span> Turn visibility into value</div>
-          <h2>Let the customer complete the picture before suggesting a next step.</h2>
-          <div class="journey-track">
-            <article><i>01</i><b>Bring together</b><p>Show available policy information with source and date.</p></article><span aria-hidden="true">→</span>
-            <article><i>02</i><b>Check together</b><p>Invite the customer to confirm, correct or add what is missing.</p></article><span aria-hidden="true">→</span>
-            <article><i>03</i><b>Make sense of it</b><p>Explain a review question in the context of the customer's goals.</p></article><span aria-hidden="true">→</span>
-            <article><i>04</i><b>Choose what helps</b><p>Offer information, no action, self-service or an adviser conversation.</p></article>
+          <div class="section-label"><span>04</span> Make it useful</div>
+          <h2>Trust comes from letting customers complete the picture before interpreting it.</h2>
+          <div class="journey-visual">
+            <div class="journey-line" aria-hidden="true"></div>
+            <article class="journey-step"><span class="journey-number">01</span><span class="journey-label">BRING TOGETHER</span><h3>Show what is known</h3><p>Include source, status and last-updated date.</p></article>
+            <article class="journey-step"><span class="journey-number">02</span><span class="journey-label">CHECK TOGETHER</span><h3>Invite correction</h3><p>Let customers confirm, correct or add information.</p></article>
+            <article class="journey-step"><span class="journey-number">03</span><span class="journey-label">MAKE SENSE</span><h3>Explain the question</h3><p>Connect a review prompt to customer goals.</p></article>
+            <article class="journey-step"><span class="journey-number">04</span><span class="journey-label">CHOOSE</span><h3>Offer a useful response</h3><p>Information, self-service, adviser or no action.</p></article>
           </div>
-          <div class="response-grid"><div><b>Customer stays in control</b><span>See why the prompt appeared. Correct a detail, defer or decline.</span></div><div><b>Advice stays governed</b><span>A portfolio insight is not a coverage decision or product recommendation.</span></div></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Keep the sequence human: first make the portfolio understandable, then ask if the customer wants to review an area. Avoid leading with a calculated gap from incomplete data.</p></details>
+          <div class="journey-guardrails"><div><span>Customer control</span><b>Correct · defer · decline</b></div><i></i><div><span>Advice boundary</span><b>An insight is not a recommendation</b></div><i></i><div><span>Data boundary</span><b>Unknown does not mean uncovered</b></div></div>
         </div>
-        <div class="slide-foot"><span>Visibility → customer confirmation → useful choice</span><span>05 / 09</span></div>
+        <div class="slide-foot"><span>Visibility → confirmation → interpretation → customer choice</span><span>05 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="One view, different life moments" aria-label="Slide 6 of 9">
+      <section class="deck-slide" data-title="Different life moments" aria-label="Slide 6 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>05</span> One foundation, many needs</div>
-          <h2>The same portfolio can support different conversations at different moments.</h2>
-          <p class="slide-intro">These are illustrative scenarios from the prototype. Each starts with what the customer cares about, not a product.</p>
-          <div class="persona-grid">
-            <article class="persona-card"><div class="persona-top"><span class="persona-avatar simon-avatar">S</span><div><b>Simon</b><small>Planning for retirement</small></div></div><span class="moment-tag">Income and later-life confidence</span><p>“Will my plans and protection support the retirement I want?”</p><a href="index.html?persona=simon" target="_blank" rel="noopener">Open Simon's journey ↗</a></article>
-            <article class="persona-card featured"><div class="persona-top"><span class="persona-avatar alex-avatar">A</span><div><b>Alex</b><small>Balancing a mortgage and family needs</small></div></div><span class="moment-tag">Household resilience</span><p>“Would it help to review how my family is protected if income changes?”</p><a href="index.html?persona=alex" target="_blank" rel="noopener">Open Alex's journey ↗</a></article>
-            <article class="persona-card"><div class="persona-top"><span class="persona-avatar sarah-avatar">S</span><div><b>Sarah</b><small>Welcoming a new dependant</small></div></div><span class="moment-tag">Family goals and protection</span><p>“How can I balance my child's future with my family's security?”</p><a href="index.html?persona=sarah" target="_blank" rel="noopener">Open Sarah's journey ↗</a></article>
+          <div class="section-label"><span>05</span> One foundation, different moments</div>
+          <h2>The same portfolio can support different conversations as life changes.</h2>
+          <p class="slide-intro">Each example starts with a customer priority. The portfolio stays the shared foundation.</p>
+          <div class="life-line" aria-hidden="true"><span></span></div>
+          <div class="life-moments">
+            <article class="life-card"><div class="life-top"><span class="life-avatar">S</span><div><b>Simon</b><small>Planning for retirement</small></div></div><span class="life-stage">INCOME & LATER-LIFE CONFIDENCE</span><blockquote>“Will my plans support the retirement I want?”</blockquote><span class="life-link">Explore Simon's journey <i>↗</i></span></article>
+            <article class="life-card featured"><div class="life-top"><span class="life-avatar">A</span><div><b>Alex</b><small>Mortgage and family needs</small></div></div><span class="life-stage">HOUSEHOLD RESILIENCE</span><blockquote>“How might my family be affected if income changes?”</blockquote><a class="life-link" href="index.html?persona=alex" target="_blank" rel="noopener">Explore Alex's journey <i>↗</i></a></article>
+            <article class="life-card"><div class="life-top"><span class="life-avatar">S</span><div><b>Sarah</b><small>Welcoming a new dependant</small></div></div><span class="life-stage">FAMILY GOALS & PROTECTION</span><blockquote>“How do I balance my child's future and family security?”</blockquote><span class="life-link">Explore Sarah's journey <i>↗</i></span></article>
           </div>
-          <p class="persona-note"><b>Keep the distinction:</b> the prototype's scenarios and calculations are synthetic prompts for discussion, not assessed customer needs.</p>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Use the customer portfolio as a shared foundation. Different moments can bring forward different parts of it, but the customer should see the information and assumptions behind each prompt.</p></details>
+          <div class="illustrative-note">Illustrative scenarios for discussion · not customer segments or model outputs</div>
         </div>
-        <div class="slide-foot"><span>Customer moments are examples, not segments or model outputs</span><span>06 / 09</span></div>
+        <div class="slide-foot"><span>One portfolio foundation · relevant customer context</span><span>06 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="First increment: a trusted snapshot" aria-label="Slide 7 of 9">
+      <section class="deck-slide" data-title="A focused first increment" aria-label="Slide 7 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>06</span> First increment · prove the foundation</div>
-          <h2>Start with a small snapshot that is useful on its own.</h2>
-          <p class="slide-intro">For one agreed customer group and selected policy categories, profile an approved sample first. Use it to shape a read-only view with source and last-updated date, while keeping unknowns visible.</p>
-          <div class="first-increment-outcome deck-outcome"><b>What we can achieve</b><span>A source-labelled prototype snapshot, a baseline of what the available data can support, and a clear decision on what to build next.</span></div>
-          <div class="proof-grid">
-            <article><span class="proof-kicker">DATA FITNESS</span><h3>Can we trust the records?</h3><p>Check permitted access, links between customer, policyholder and covered person, and completeness of insurer, product, status, benefit and key dates.</p><b>Measure</b><small>Reference-checked match accuracy; unmatched records; field completeness; freshness; duplicate and conflict rates.</small></article>
-            <article><span class="proof-kicker">CUSTOMER CLARITY</span><h3>Can people understand the view?</h3><p>Ask reviewers to find a policy, tell where it came from and explain what “not visible” means.</p><b>Measure</b><small>Task completion; source and status understanding; useful corrections; labels that cause confusion.</small></article>
-            <article><span class="proof-kicker">WHAT WE LEARN</span><h3>What should come next?</h3><p>Compare data gaps with customer and adviser feedback before expanding the scope.</p><b>Learn</b><small>Usable sources; customer-declared fields; next policy category; remaining permission needs.</small></article>
+          <div class="section-label"><span>06</span> Prove the foundation</div>
+          <h2>A narrow first increment can test whether the data and the view are fit for purpose.</h2>
+          <div class="pilot-scope"><span class="scope-icon">01</span><p><b>Start small</b><span>One agreed customer group · selected policy categories · an approved sample · a read-only, source-labelled view</span></p><span class="scope-arrow" aria-hidden="true">→</span><p class="scope-output"><b>Deliver</b><span>A data-quality baseline, customer-comprehension findings and a decision on the next increment</span></p></div>
+          <div class="proof-columns">
+            <article><div class="proof-head"><span>01</span><small>DATA FITNESS</small></div><h3>Can we trust the records?</h3><p>Profile permitted access, matching links and key-field completeness.</p><div class="proof-measures"><b>Check</b><span>Match accuracy · missing fields · freshness · duplicates · conflicts</span></div></article>
+            <article><div class="proof-head"><span>02</span><small>CUSTOMER CLARITY</small></div><h3>Can people understand the view?</h3><p>Ask reviewers to locate a policy and explain its source, date and status.</p><div class="proof-measures"><b>Check</b><span>Task success · correct interpretation · useful corrections</span></div></article>
+            <article><div class="proof-head"><span>03</span><small>WHAT NEXT</small></div><h3>What should we build next?</h3><p>Compare data gaps with customer and adviser feedback.</p><div class="proof-measures"><b>Decide</b><span>Usable sources · next category · remaining permissions</span></div></article>
           </div>
-          <div class="boundary-callout"><b>Set targets after profiling</b><span>This first increment can validate data fitness and comprehension. It cannot establish total cover, prove a protection gap or demonstrate sales uplift.</span></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Keep this first step narrow: an approved sample, a selected policy slice and an honest view of data confidence. Agree thresholds only after seeing the baseline.</p></details>
+          <div class="pilot-limit"><b>Set thresholds after profiling.</b> This work cannot prove total cover, a true protection gap or sales uplift.</div>
         </div>
-        <div class="slide-foot"><span>Outcome · data baseline · customer understanding · next-step decision</span><span>07 / 09</span></div>
+        <div class="slide-foot"><span>Measure the baseline before setting targets</span><span>07 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="Build the wider proposition in steps" aria-label="Slide 8 of 9">
+      <section class="deck-slide" data-title="Build in evidence-led steps" aria-label="Slide 8 of 9">
         <div class="slide-inner">
-          <div class="section-label"><span>07</span> Grow the capability in increments</div>
-          <h2>Let each step earn the next one.</h2>
-          <div class="roadmap roadmap-four">
-            <article><span class="roadmap-step">01</span><span class="roadmap-phase">TRUST THE VIEW</span><h3>Profile and show selected records</h3><p>Source, date, customer match and clear unknown states.</p><div><b>Prove</b><small>Data fitness and customer understanding.</small></div></article>
-            <article><span class="roadmap-step">02</span><span class="roadmap-phase">COMPLETE IT</span><h3>Let customers add or correct cover</h3><p>Use consented, customer-confirmed information.</p><div><b>Prove</b><small>A broader picture with fewer assumptions.</small></div></article>
-            <article><span class="roadmap-step">03</span><span class="roadmap-phase">MAKE IT USEFUL</span><h3>Explain one review question</h3><p>Relate known cover to commitments and customer goals.</p><div><b>Prove</b><small>Relevance, comprehension and appropriate choice.</small></div></article>
-            <article class="roadmap-later"><span class="roadmap-step">04</span><span class="roadmap-phase">CONNECT & LEARN</span><h3>Close the service loop</h3><p>Add adviser workflow, approved feeds and outcome capture.</p><div><b>Prove</b><small>Reliable service evidence before advanced models.</small></div></article>
+          <div class="section-label"><span>07</span> Build in steps</div>
+          <h2>Expand only when each step earns the next.</h2>
+          <div class="roadmap-visual">
+            <div class="roadmap-rail" aria-hidden="true"></div>
+            <article class="roadmap-card"><span class="roadmap-index">01</span><small>TRUST THE VIEW</small><h3>Profile selected records</h3><p>Source, date, match and unknown states.</p><div><b>Gate</b><span>Data fitness + comprehension</span></div></article>
+            <article class="roadmap-card"><span class="roadmap-index">02</span><small>COMPLETE IT</small><h3>Let customers add or correct</h3><p>Use consented, confirmed information.</p><div><b>Gate</b><span>Fewer assumptions</span></div></article>
+            <article class="roadmap-card"><span class="roadmap-index">03</span><small>MAKE IT USEFUL</small><h3>Explain one review question</h3><p>Relate known cover to commitments.</p><div><b>Gate</b><span>Relevance + appropriate choice</span></div></article>
+            <article class="roadmap-card roadmap-later"><span class="roadmap-index">04</span><small>CONNECT & LEARN</small><h3>Close the service loop</h3><p>Add approved feeds, adviser workflow and outcomes.</p><div><b>Gate</b><span>Reliable service evidence</span></div></article>
           </div>
-          <div class="roadmap-principle"><b>Possible activation moments:</b> a mortgage change, approaching retirement or a new dependant can bring a customer back to their portfolio. Validate the data and service path before choosing one.</div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Do not make a mortgage trigger the whole proposition. It is one possible entry point once the trusted household and protection view is understood.</p></details>
+          <div class="activation-note"><b>Activation comes later.</b> A mortgage change, retirement planning or a new dependant may bring a customer back once the data and service path are ready.</div>
         </div>
-        <div class="slide-foot"><span>Portfolio foundation first · add activation when it is ready</span><span>08 / 09</span></div>
+        <div class="slide-foot"><span>Prove the portfolio foundation before scaling activation</span><span>08 / 09</span></div>
       </section>
 
-      <section class="deck-slide" data-title="What we need from the Data team" aria-label="Slide 9 of 9">
-        <div class="slide-inner final-slide">
-          <div class="section-label"><span>08</span> Agree the next step</div>
-          <h2>Let's find out what it would take to give customers a clearer insurance picture.</h2>
-          <div class="data-team-grid">
-            <article><span>01</span><b>Set the first view</b><p>Which customer group and policy types should we include first?</p></article>
-            <article><span>02</span><b>Map the records</b><p>Where are the SCB and partner policy data, who owns them, and what fields are dependable?</p></article>
-            <article><span>03</span><b>Check the guardrails</b><p>What permissions, consent, matching and customer correction are needed?</p></article>
-            <article><span>04</span><b>Choose a proof point</b><p>What would show that the view is complete enough and useful to customers and advisers?</p></article>
+      <section class="deck-slide final-slide" data-title="Agree the next step" aria-label="Slide 9 of 9">
+        <div class="slide-inner">
+          <div class="section-label"><span>08</span> Decision requested</div>
+          <h2>Agree a focused data discovery to identify the smallest useful view we can test.</h2>
+          <div class="decision-visual">
+            <div class="decision-list">
+              <article><span>01</span><div><b>Choose the first slice</b><small>Customer group and policy categories</small></div></article>
+              <article><span>02</span><div><b>Map the records</b><small>Sources, owners, fields and matching keys</small></div></article>
+              <article><span>03</span><div><b>Confirm the guardrails</b><small>Permitted sample, consent and correction</small></div></article>
+              <article><span>04</span><div><b>Define the proof point</b><small>Data fitness and customer understanding</small></div></article>
+            </div>
+            <div class="discovery-output"><span>DISCOVERY OUTPUT</span><div class="output-icon">✓</div><b>A feasible first view</b><p>Source map<br/>Field-quality profile<br/>Permitted sample path<br/>Evidence-based next step</p></div>
           </div>
-          <div class="data-team-callout"><span>Suggested next step</span><b>A short data discovery that delivers a source map, field-quality profile, permitted sample path and recommendation for the smallest useful view to test.</b></div>
-          <div class="final-actions"><a class="button button-primary" href="index.html?persona=alex" target="_blank" rel="noopener">Open the working prototype ↗</a><button class="button button-outline" data-action="restart">Return to the beginning</button></div>
-          <details class="presenter-cue"><summary>Presenter cue</summary><p>Ask the Data team to help shape a feasible first view, not to commit to a broad platform. Leave with the initial scope, data owners and a date to review what the discovery finds.</p></details>
+          <div class="closing-line"><span></span><b>Start with a view customers can understand and the bank can stand behind.</b><span></span></div>
+          <a class="final-prototype-link" href="index.html?persona=alex" target="_blank" rel="noopener">Open the v1.2 working prototype <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="slide-foot"><span>Decision sought · agree a focused data discovery</span><span>09 / 09</span></div>
+        <div class="slide-foot"><span>Decision · scope a permitted, evidence-led discovery</span><span>09 / 09</span></div>
       </section>
     </main>
 
