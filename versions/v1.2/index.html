@@ -19,16 +19,14 @@
       <div class="moment-explainer">
         <button class="moment-trigger" type="button" aria-label="See how the client intelligence journey works" aria-controls="moment-callout" aria-expanded="false">How the journey works</button>
         <aside id="moment-callout" class="moment-callout" role="note" aria-hidden="true">
-          <strong>From data to a useful conversation</strong>
-          <p class="journey-logic-intro">The deck's strategy, shown through this illustrative customer journey.</p>
+          <strong>A clearer view. A better conversation.</strong>
+          <p class="journey-logic-intro">Start with the customer&apos;s priorities. Make the context clear. Let them choose what happens next.</p>
           <ol class="journey-logic">
-            <li><span class="logic-step">01</span><div><b>Build the client picture</b><small>Bring together bank-held, partner and customer-shared information; make gaps visible.</small><em>In the demo: financial picture</em></div></li>
-            <li><span class="logic-step">02</span><div><b>Anticipate a possible need</b><small>Use a life event or financial signal to raise a relevant question before a product.</small><em>In the demo: three illustrative moments</em></div></li>
-            <li><span class="logic-step">03</span><div><b>Choose the right response</b><small>Let the customer validate or correct the need, then explore, defer or decline.</small><em>In the demo: customer validation</em></div></li>
-            <li><span class="logic-step">04</span><div><b>Start the right conversation</b><small>Offer a useful digital next step or a conversation with an adviser.</small><em>In the demo: options and adviser handoff</em></div></li>
-            <li class="logic-future"><span class="logic-step">05</span><div><b>Learn from outcomes</b><small>Use corrections and eventual outcomes to improve future relevance.</small><em>Future state: this prototype keeps responses in-session; it has no learning loop.</em></div></li>
+            <li><span class="logic-step">01</span><div><b>See the picture</b><small>Bring known protection into the context of what matters.</small></div></li>
+            <li><span class="logic-step">02</span><div><b>Let the customer shape it</b><small>Confirm, correct or complete the picture before choosing a next step.</small></div></li>
+            <li><span class="logic-step">03</span><div><b>Continue the conversation</b><small>Carry customer-approved context into an adviser discussion.</small></div></li>
           </ol>
-          <small class="logic-footnote">Personas and calculations are illustrative. A modelled need remains a hypothesis until the customer validates it.</small>
+          <small class="logic-footnote">Illustrative only. No real adviser request is submitted.</small>
         </aside>
       </div>
       <div class="next-steps-explainer">
@@ -58,7 +56,7 @@
 
             <section class="next-guide-section" id="next-increment" aria-labelledby="next-increment-title">
               <div class="next-section-heading"><span class="next-section-number">02</span><div><span class="next-section-kicker">SHAPE THE FIRST INCREMENT TOGETHER</span><h3 id="next-increment-title">Where could we start together?</h3></div></div>
-              <p class="increment-support">Start small enough to learn, but useful enough for customers and advisers to see value.</p><p class="illustrative-label">ILLUSTRATIVE OPTIONS &mdash; neither is agreed</p>
+              <p class="increment-support">Start small enough to learn, but useful enough for customers and advisers to see value.</p><p class="illustrative-label">ILLUSTRATIVE OPTIONS &middot; incremental options we could shape together</p>
               <div class="increment-options">
                 <article class="increment-option"><span class="option-letter">A</span><span class="option-kicker">ILLUSTRATIVE OPTION</span><h4>TRUSTED PROTECTION VIEW</h4><p class="option-experience">See what is currently visible to SCB, what is not visible, and what may be worth reviewing.</p><p class="option-purpose">Understand whether customers find the picture clear, credible and useful.</p><p class="option-benefit">Build first from information SCB already trusts where possible.</p><figure><img src="assets/guide-financial-picture.jpg" alt="Illustrative SCB mobile financial picture showing mortgage, family commitments, existing protection, and savings and investments"/><figcaption>Start with what is already understood</figcaption></figure></article>
                 <article class="increment-option"><span class="option-letter">B</span><span class="option-kicker">ILLUSTRATIVE OPTION</span><h4>HELP THE CUSTOMER COMPLETE THE PICTURE</h4><div class="customer-quote">&ldquo;I already have cover&rdquo;</div><div class="option-steps"><span>Upload / add information</span><i>&rarr;</i><span>Extract relevant details</span><i>&rarr;</i><span>Customer reviews</span><i>&rarr;</i><span>Customer confirms</span><i>&rarr;</i><span>Explore a useful question</span></div><blockquote>&ldquo;Does this cover still work if my family needs it overseas?&rdquo;</blockquote><p class="option-purpose">Explore whether customer-provided information can make the portfolio picture more complete and useful.</p><div class="option-evidence"><figure><img src="assets/guide-protection-options.jpg" alt="SC Mobile protection screen showing protection categories and ways to explore insurance"/><figcaption>See protection areas in the current experience</figcaption></figure><figure><img src="assets/guide-policy-upload.png" alt="Existing prototype screen with Upload policy, Enter details manually, and Do this later options"/><figcaption>Invite the customer to complete the picture</figcaption></figure></div></article>
@@ -69,7 +67,7 @@
 
             <section class="next-guide-section" id="next-guardrails" aria-labelledby="next-guardrails-title">
               <div class="next-section-heading"><span class="next-section-number">03</span><div><span class="next-section-kicker">AGREE THE TRUST BOUNDARIES</span><h3 id="next-guardrails-title">Design for trust from the start</h3><p class="trust-prompt">What should always remain true?</p></div></div>
-              <div class="guardrail-grid"><p>NOT VISIBLE <span>&ne;</span> NOT COVERED</p><p>INFERRED <span>&ne;</span> CONFIRMED</p><p>CUSTOMER-CONFIRMED <span>&ne;</span> BANK-HELD</p><p>AI EXPLAINS <span>&middot;</span> HUMAN JUDGEMENT REMAINS</p></div>
+              <div class="guardrail-grid"><p>A missing record does not mean the customer has no cover.</p><p>A signal is a reason to ask, not a fact about the customer.</p><p>Customer-confirmed details stay distinct from information the bank holds.</p><p>AI can explain. People make the decisions.</p></div>
               <p class="need-first">Need first. Product later.</p>
               <details class="guide-disclosure guardrail-disclosure"><summary>Explore trust questions</summary><ul><li>What can we surface proactively without feeling intrusive?</li><li>When should we ask the customer rather than infer?</li><li>Where should explicit consent be part of the experience?</li><li>What information should customers be able to correct?</li><li>When should an adviser or insurer confirm the interpretation?</li><li>What should never be automated?</li><li>How do we make the source of information understandable?</li></ul></details>
             </section>
@@ -77,6 +75,7 @@
           </aside>
         </details>
       </div>
+      <a class="impact-nav-link" href="impact.html">Potential impact</a>
       </div>
     </aside>
     <div id="persona-popover" class="persona-popover" role="tooltip" aria-hidden="true"></div>
