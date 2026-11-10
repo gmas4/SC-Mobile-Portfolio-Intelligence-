@@ -68,6 +68,17 @@ document.addEventListener('click', event => {
   const openGuide = document.querySelector('.next-steps-details[open]');
   if (openGuide && !openGuide.contains(event.target)) openGuide.open = false;
 });
+document.querySelector('.next-steps-details')?.addEventListener('toggle', event => {
+  if (event.currentTarget.open) event.currentTarget.querySelector('.next-guide-close')?.focus();
+});
+document.querySelector('.next-guide-progress')?.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const destination = document.querySelector(link.getAttribute('href'));
+  if (!destination) return;
+  event.preventDefault();
+  destination.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 document.addEventListener('keydown', event => {
   const openGuide = document.querySelector('.next-steps-details[open]');
   if (!openGuide) return;
@@ -77,14 +88,15 @@ document.addEventListener('keydown', event => {
     return;
   }
   if (event.key !== 'Tab') return;
-  const trigger = openGuide.querySelector('summary');
-  const close = openGuide.querySelector('.next-guide-close');
-  if (event.shiftKey && document.activeElement === trigger) {
+  const focusable = [...openGuide.querySelector('.next-steps-callout').querySelectorAll('a[href],button:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')].filter(item => item.getClientRects().length > 0 && !item.closest('[hidden]'));
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && (document.activeElement === first || !openGuide.contains(document.activeElement))) {
     event.preventDefault();
-    close?.focus();
-  } else if (!event.shiftKey && document.activeElement === close) {
+    last?.focus();
+  } else if (!event.shiftKey && (document.activeElement === last || !openGuide.contains(document.activeElement))) {
     event.preventDefault();
-    trigger?.focus();
+    first?.focus();
   }
 });
 let personaPopoverTimer;
