@@ -160,6 +160,11 @@ body{background:#f1f1f1}
 .deck-viewport{scrollbar-color:#aaa transparent;filter:grayscale(1)}
 .deck-slide{background:#fff}
 .slide-cover{background:#050505;color:#fff}
+.cover-portfolio-shot{position:relative;width:min(450px,100%);max-height:min(70vh,670px);margin:0 auto;align-self:center}
+.cover-portfolio-shot img{display:block;width:100%;max-height:min(68vh,650px);object-fit:contain;border:1px solid #ffffff30;border-radius:8px;background:#fff;box-shadow:0 28px 70px #0009}
+.cover-portfolio-shot figcaption{margin-top:9px;color:#aaa;text-align:center;font-size:10px;letter-spacing:.07em}
+.cover-copy{width:min(560px,100%);margin-left:0}
+.slide-cover h1{max-width:560px;font-size:clamp(40px,4.7vw,64px)}
 .slide-cover h1,.deck-slide h2,.deck-slide h3,.deck-slide h4{font-family:"New Baskerville",Baskerville,Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.5px}
 .slide-cover h1{letter-spacing:-1.8px}
 .section-label span{border-color:#aaa;color:#222}
@@ -172,3 +177,4 @@ body{background:#f1f1f1}
 .slide-dot[aria-current="true"]{background:#111}
 .slide-count{color:#444}
 @media(max-width:900px){.capco-lockup{min-width:58px}.capco-lockup>b{font-size:14px}}
+@media(max-width:900px){.cover-portfolio-shot{width:min(390px,90%);max-height:min(43vh,390px)}.cover-portfolio-shot img{max-height:min(40vh,360px)}}
